@@ -13,7 +13,7 @@ const HomePageFive = () => {
 
       <p className="text-center text-xs text-gray-400 md:mt-4 mt-2">
         It doesn't matter where you are, so long as you're <br /> connected.
-        Januar Instant offers no limitations.
+        Code One LLC Instant offers no limitations.
       </p>
 
       <div className="bg-[url('https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/6638da64d5cb186f294a9288_6481b8ee8b4dcf6bfed04a03_januar-world%20(1)-poster-00001.jpg')] w-full min-h-[550px] mt-28 rounded-sm shadow-md relative ">

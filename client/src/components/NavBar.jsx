@@ -427,7 +427,7 @@ const CompanyContent = () => {
       <div className="flex flex-col  gap-4 shadow-md px-3 py-2 bg-white">
         <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
           <Link to="/about">
-          <h4 className="text-xs font-normal">Code One LLC </h4>
+          <h4 className="text-xs font-normal">About Code One LLC </h4>
           </Link>
         </div>
         <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
