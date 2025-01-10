@@ -134,7 +134,7 @@ const NavBar = () => {
                         </div>
                         <div>
                           <h4 className="text-xs font-normal">
-                            Januar Instant
+                            Code One LLC Instant
                           </h4>
                           <p className="text-xs font-normal text-gray-500">
                             Real-Time Payments
@@ -152,7 +152,7 @@ const NavBar = () => {
                           />
                         </div>
                         <div>
-                          <h4 className="text-xs font-normal">Januar Wallet</h4>
+                          <h4 className="text-xs font-normal">Code One LLC Wallet</h4>
                           <p className="text-xs font-normal text-gray-500">
                             Institutional Crypto Custody
                           </p>
@@ -170,7 +170,7 @@ const NavBar = () => {
                         </div>
                         <div>
                           <h4 className="text-xs font-normal hover:bg-gray-200">
-                            Januar Trade
+                            Code One LLC Trade
                           </h4>
                           <p className="text-xs font-normal text-white bg-gray-400 border rounded-md px-2">
                             Book a demo
@@ -345,7 +345,7 @@ const ProductContent = () => {
               />
             </div>
             <div>
-              <h4 className="text-xs font-normal">Januar Instant</h4>
+              <h4 className="text-xs font-normal">Code One LLC Instant</h4>
               <p className="text-xs font-normal text-gray-500">
                 Real-Time Payments
               </p>
@@ -362,7 +362,7 @@ const ProductContent = () => {
               />
             </div>
             <div>
-              <h4 className="text-xs font-normal">Januar Wallet</h4>
+              <h4 className="text-xs font-normal">Code One LLC Wallet</h4>
               <p className="text-xs font-normal text-gray-500">
                 Institutional Crypto Custody
               </p>
@@ -380,7 +380,7 @@ const ProductContent = () => {
             </div>
             <div>
               <h4 className="text-xs font-normal hover:bg-gray-200">
-                Januar Trade
+                Code One LLC Trade
               </h4>
               <p className="text-xs font-normal text-white bg-gray-400 border rounded-md px-2">
                 Book a demo
@@ -407,7 +407,7 @@ const ServicesContent = () => {
               />
             </div>
             <div>
-              <h4 className="text-xs font-normal text-black ">Januar Flow</h4>
+              <h4 className="text-xs font-normal text-black ">Code One LLC Flow</h4>
               <p className="text-xs font-normal text-gray-500">
                 report of funds and risks
               </p>

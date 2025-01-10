@@ -55,10 +55,10 @@ const Footer = () => {
             <div className="md:col-span-5 col-span-2 md:pl-24 md:mt-10 mb-4">
               
                 <p className=" text-xs font-light text-gray-300 md:mb-6">
-                  Januar ApS is a Payment Institute with a license granted by
+                  Code One LLC ApS is a Payment Institute with a license granted by
                   <br />
                   the Danish Financial Supervisory Authority (Finanstilsynet)
-                  <br /> (FTID:22045). Januar ApS is incorporated in Denmark,
+                  <br /> (FTID:22045). Code One LLC ApS is incorporated in Denmark,
                   <br />
                   registered at Gothersgade 14, 4. sal , 1123 Copenhagen K,
                   <br /> Denmark, with company registration number (CVR)
@@ -69,7 +69,7 @@ const Footer = () => {
                 <p className="text-gray-100 text-xs mt-4">
                   <span>REDEGØRELSE: </span>
                   <span className="text-gray-50 text-xs">
-                    Report on Inspection at Januar ApS by <br /> Danish
+                    Report on Inspection at Code One LLC ApS by <br /> Danish
                     Financial Supervisory Authority (Finanstilsynet)
                   </span>
                 </p>
@@ -82,27 +82,27 @@ const Footer = () => {
                     Products
                   </p>
                   <p className="text-gray-300 text-xs font-light mb-3">
-                    Januar Account
+                  Code One LLC Account
                   </p>
                   <p className="text-gray-300 text-xs font-light mb-3">
-                    Januar Instant
+                  Code One LLC Instant
                   </p>
                   <p className="text-gray-300 text-xs font-light mb-3">
-                    Januar Wallet
+                  Code One LLC Wallet
                   </p>
-                  <p className="text-gray-300 text-xs font-light mb-3">Januar Trade</p>
+                  <p className="text-gray-300 text-xs font-light mb-3">Code One LLC Trade</p>
                 </div>
                 <div className="md:col-span-2 col-span-1">
                   <p className="text-white text-[12px] text-semibold mb-4">
                     Services
                   </p>
-                  <p className="text-gray-300 text-xs font-light">Januar Flow</p>
+                  <p className="text-gray-300 text-xs font-light">Code One LLC Flow</p>
                 </div>
                 <div className="md:col-span-2 col-span-1">
                   <p className="text-white text-[12px] text-semibold mb-4">
                     Company
                   </p>
-                  <p className="text-gray-300 text-xs font-light mb-3">About Januar</p>
+                  <p className="text-gray-300 text-xs font-light mb-3">About Code One LLC</p>
                   <p className="text-gray-300 text-xs font-light mb-3">Career</p>
                   <p className="text-gray-300 text-xs font-light mb-3">Partners</p>
                   <p className="text-gray-300 text-xs font-light mb-3">Contact</p>

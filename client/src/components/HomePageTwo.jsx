@@ -15,7 +15,7 @@ const HomePageTwo = () => {
             Run your crypto business with
             <br />{" "}
             <span className="text-blue-600 bg-blue-100 px-2  rounded-md">
-              Januar
+              Code One LLC
             </span>{" "}
             Account
           </h1>
@@ -47,7 +47,7 @@ const HomePageTwo = () => {
                 <div className="flex items-center mt-4 mb-4">
                   <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
                   <p className="text-sm text-gray-500 ">
-                    Verified broker at Januar
+                    Verified broker at Code One LLC
                   </p>
                 </div>
               </div>
