@@ -1,12 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Function to handle the scroll event
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    // Only add the scroll listener if on the desired page
+    if (location.pathname === "/codeone-account") {
+      window.addEventListener("scroll", handleScroll);
+    }
+
+    // Cleanup event listener when leaving the page
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [location]);
+ 
+  // console.log(isScrolled)
+ 
   const handleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -15,7 +41,7 @@ const NavBar = () => {
     setDropdownOpen(index);
   };
   return (
-    <nav className="fixed  top-0 left-0 w-full bg-white flex h-20 md:h-24 justify-between md:px-20 md:py-6  px-2 py-3 z-50">
+    <nav className={`fixed  top-0 left-0 w-full flex h-20 md:h-24 justify-between md:px-20 md:py-6  px-2 py-3 z-50 ${isScrolled === true ? "bg-white":"bg-black"}`}>
       <div className="w-1/3 h-7 md:h-10 flex justify-start   ">
        <Link to = '/'>
        <div className="h-[35px]">
@@ -24,7 +50,7 @@ const NavBar = () => {
             width="100%"
             height="100%"
             viewBox="0 0 112.8 142.8"
-            className="svglogo"
+            className={`svglogo ${isScrolled ? "fill-black" : "fill-white"}`}
           >
             <rect x="37.6" width="37.6" height="18.8"></rect>
             <rect x="18.8" y="18.8" width="18.8" height="18.8"></rect>
@@ -37,7 +63,7 @@ const NavBar = () => {
       </div>
       {/* TABS */}
       <div className="w-1/3 hidden md:block">
-        <div className="flex  justify-center text-black  bg-white px-2 py-3 -mt-8 z-10">
+        <div className={`flex  justify-center  px-2 py-3 -mt-8 z-10 ${isScrolled? "bg-white text-black": "bg-black text-white"}`}>
           <FlyoutLink href="#" FlyoutContent={ProductContent} className="">
             <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-100">
               Products
@@ -290,6 +316,22 @@ const NavBar = () => {
 
 const FlyoutLink = ({ children, href, FlyoutContent }) => {
   const [open, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  const location = useLocation()
+
+  useEffect(()=>{
+    const handleScroll = ()=>{
+      if(window.scrollY > 10){
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+    if(location.pathname = "/codeone-account"){
+      window.addEventListener("scroll", handleScroll)
+    }
+  },[location])
 
   const showFlyout = open && FlyoutContent;
   return (
@@ -298,7 +340,7 @@ const FlyoutLink = ({ children, href, FlyoutContent }) => {
       onMouseLeave={() => setOpen(false)}
       className="group relative h-fit w-fit"
     >
-      <a href={href} className="relative bg-white text-black text-sm px-2">
+      <a href={href} className={`relative  text-sm px-2 ${isScrolled ? "bg-white text-[#121212]": "bg-black text-white"}`}>
         {children}
         {/* <span
           style={{

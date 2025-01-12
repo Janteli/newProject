@@ -6,6 +6,7 @@ import BookDemo from "./pages/BookDemo";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
+import AccountPage from "./pages/AccountPage";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/about" element={<About/>}/>
           <Route path="/service" element={<Services/>}/>
           <Route path="/contact" element={<Contact/>}/>
+          <Route path="/codeone-account" element={<AccountPage/>}/>
         </Route>
         <Route path="/login" element={<LoginPage />} />
       </Routes>
