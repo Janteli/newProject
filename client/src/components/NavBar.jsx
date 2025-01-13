@@ -12,6 +12,7 @@ const NavBar = () => {
 
   useEffect(() => {
     // Function to handle the scroll event
+    // console.log(location)
     const handleScroll = () => {
       if (window.scrollY > 10) {
         setIsScrolled(true);
@@ -19,11 +20,13 @@ const NavBar = () => {
         setIsScrolled(false);
       }
     };
-    console.log(location.pathname);
+    console.log("hello", location.pathname);
 
     // Only add the scroll listener if on the desired page
     if (location.pathname === "/codeone-account") {
       window.addEventListener("scroll", handleScroll);
+    } else {
+      setIsScrolled(true);
     }
 
     // Cleanup event listener when leaving the page
@@ -32,7 +35,7 @@ const NavBar = () => {
     };
   }, [location.pathname]);
 
-  // console.log(isScrolled)
+  console.log(isScrolled);
 
   const handleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -73,22 +76,39 @@ const NavBar = () => {
             isScrolled ? "bg-white text-[#282828]" : "bg-[#282828] text-white"
           }`}
         >
-          <FlyoutLink href="#" FlyoutContent={ProductContent} className="">
+          <FlyoutLink
+            href="#"
+            FlyoutContent={ProductContent}
+            className=""
+            isScrolled={isScrolled}
+          >
             <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
               Products
             </p>
           </FlyoutLink>
-          <FlyoutLink href="#" FlyoutContent={ServicesContent}>
+          <FlyoutLink
+            href="#"
+            FlyoutContent={ServicesContent}
+            isScrolled={isScrolled}
+          >
             <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
               Services
             </p>
           </FlyoutLink>
-          <FlyoutLink href="#" FlyoutContent={CompanyContent}>
+          <FlyoutLink
+            href="#"
+            FlyoutContent={CompanyContent}
+            isScrolled={isScrolled}
+          >
             <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
               Company
             </p>
           </FlyoutLink>
-          <FlyoutLink href="#" FlyoutContent={ResourcesContent}>
+          <FlyoutLink
+            href="#"
+            FlyoutContent={ResourcesContent}
+            isScrolled={isScrolled}
+          >
             <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
               Resources
             </p>
@@ -164,8 +184,9 @@ const NavBar = () => {
                   Products
                 </button>
                 {dropdownOpen === 1 && (
-                  <div className="pl-4 space-y-2 transition-all duration-300"
-                    onClick={()=>setMenuOpen(false)}
+                  <div
+                    className="pl-4 space-y-2 transition-all duration-300"
+                    onClick={() => setMenuOpen(false)}
                   >
                     <div className="px-2 py-3 hover:bg-gray-200 rounded-md">
                       <div className="flex gap-10 px-1">
@@ -238,8 +259,9 @@ const NavBar = () => {
                 {dropdownOpen === 2 && (
                   <div className="pl-4 space-y-2 transition-all duration-300">
                     <Link to="/service">
-                      <div className="px-2 py-3 hover:bg-gray-200 rounded-md"
-                       onClick={()=>setMenuOpen(false)}
+                      <div
+                        className="px-2 py-3 hover:bg-gray-200 rounded-md"
+                        onClick={() => setMenuOpen(false)}
                       >
                         <div className="flex gap-10 px-1">
                           <div className="h-10 w-10 ">
@@ -274,8 +296,9 @@ const NavBar = () => {
                   Company
                 </button>
                 {dropdownOpen === 3 && (
-                  <div className="pl-4 space-y-2 transition-all duration-300"
-                  onClick={()=>setMenuOpen(false)}
+                  <div
+                    className="pl-4 space-y-2 transition-all duration-300"
+                    onClick={() => setMenuOpen(false)}
                   >
                     <div className="flex px-2 py-6 hover:bg-gray-200 rounded-md">
                       <Link to="/about">
@@ -304,8 +327,9 @@ const NavBar = () => {
                   Resources
                 </button>
                 {dropdownOpen === 4 && (
-                  <div className="pl-4 space-y-2 transition-all duration-300"
-                  onClick={()=>setMenuOpen(false)}
+                  <div
+                    className="pl-4 space-y-2 transition-all duration-300"
+                    onClick={() => setMenuOpen(false)}
                   >
                     <div className="flex px-2 py-6 hover:bg-gray-200 rounded-md">
                       <h4 className="text-xs font-normal">News </h4>
@@ -323,12 +347,20 @@ const NavBar = () => {
               </li>
             </ul>
             <div className=" space-x-2 flex">
-              <button className="px-3 py-3 border border-black rounded-md hover:bg-gray-100 text-xs ">
-                Login
-              </button>
-              <button className="px-3 py-3 font-normal bg-[#282828] text-white rounded-md hover:bg-gray-800 text-xs">
-                Book a demo
-              </button>
+              <Link to="/login">
+                <button className="px-3 py-3 border border-black rounded-md hover:bg-gray-100 text-xs "
+                onClick={() => setMenuOpen(false)}
+                >
+                  Login
+                </button>
+              </Link>
+              <Link to="/book-a-demo">
+                <button className="px-3 py-3 font-normal bg-[#282828] text-white rounded-md hover:bg-gray-800 text-xs"
+                onClick={() => setMenuOpen(false)}
+                >
+                  Book a demo
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -337,28 +369,9 @@ const NavBar = () => {
   );
 };
 
-const FlyoutLink = ({ children, href, FlyoutContent }) => {
+const FlyoutLink = ({ children, href, FlyoutContent, isScrolled }) => {
   const [open, setOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    if ((location.pathname = "/codeone-account")) {
-      window.addEventListener("scroll", handleScroll);
-    }
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [location]);
+  // const [isScrolled, setIsScrolled] = useState(false);
 
   const showFlyout = open && FlyoutContent;
   return (

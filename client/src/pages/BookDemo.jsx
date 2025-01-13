@@ -252,7 +252,6 @@ const BookDemo = () => {
   };
 
   console.log(selectedTime);
-  
 
   const tileDisabled = ({ date, view }) => {
     const day = date.getDay();
@@ -284,104 +283,109 @@ const BookDemo = () => {
   return (
     <>
       {/* Main booking section */}
-<div className={`mt-44 ${selectedTime !== null ? "hidden" : ""}`}>
-  <h3 className="text-3xl font-normal text-center">
-    Book a <span className="bg-gradient-to-r from-[#C2E485] to-[#D7F825] px-2 py-1 rounded-md">demo</span> with our Code One LLC expert
-  </h3>
-  <p className="text-md text-gray-400 text-center">
-    Other questions? <u>Contact sales</u>
-  </p>
-
-  {/* Booking Form */}
-  <div className="flex w-full items-center justify-center gap-4 py-8 shadow-md mx-auto">
-    {/* Left: Calendar */}
-    <div className="max-w-1/2 flex flex-col items-center justify-center bg-[#425B76] py-6">
-      <div className="p-6 bg-gray-400 border rounded-full w-20 h-20 flex items-center justify-center">
-        <IoPerson className="text-5xl" />
-      </div>
-      <div className="max-w-md mx-auto shadow-lg rounded-md mt-10">
-        <h3 className="text-2xl font-sans mb-4 text-center text-white">
-          Meet with Kristoffer Nystrøm
+      <div className={` mt-44 ${selectedTime !== null ? "hidden" : ""}`}>
+        <h3 className="text-3xl font-normal text-center">
+          Book a{" "}
+          <span className="bg-gradient-to-r from-[#C2E485] to-[#D7F825] px-2 py-1 rounded-md">
+            demo
+          </span>{" "}
+          with our Code One LLC expert
         </h3>
-        <StyledCalendar
-          onChange={setSelectedDate}
-          value={selectedDate}
-          tileDisabled={tileDisabled}
-          onActiveStartDateChange={handleActiveStartDateChange}
-          activeStartDate={activeStartDate}
-          calendarType="gregory"
-          prev2Label={null}
-          next2Label={null}
-        />
-      </div>
-    </div>
+        <p className="text-md text-gray-400 text-center">
+          Other questions? <u>Contact sales</u>
+        </p>
 
-    {/* Right: Time Slots */}
-    <div className="w-1/2 bg-white pl-4 rounded-md pr-8 shadow-lg max-w-sm py-10">
-      <h3 className="text-md font-normal text-[#425B76] mb-4">
-        How long do you need?
-      </h3>
-      <div className="flex mb-4">
-        <button
-          onClick={() => setDuration(15)}
-          className={`text-xs font-light border border-gray-500 px-9 py-2 rounded-sm ${
-            duration === 15 ? "bg-blue-200" : ""
-          }`}
-        >
-          15 mins
-        </button>
-        <button
-          onClick={() => setDuration(30)}
-          className={`text-xs font-light border border-gray-500 px-9 py-2 rounded-sm ${
-            duration === 30 ? "bg-blue-200" : ""
-          }`}
-        >
-          30 mins
-        </button>
-        <button
-          onClick={() => setDuration(60)}
-          className={`text-xs font-light border border-gray-500 px-9 py-2 rounded-sm ${
-            duration === 60 ? "bg-blue-200" : ""
-          }`}
-        >
-          1 hour
-        </button>
-      </div>
-      <h3 className="text-md font-normal text-[#425B76]">
-        What time works best
-      </h3>
-      <p className="text-md font-light text-[#425B76] mb-4">
-        Showing times for{" "}
-        <span className="text-md font-normal text-[#425B76]">
-          {selectedDate.toDateString()}
-        </span>
-      </p>
-      <p className="text-sm mb-4 text-blue-400">UTC +05:45 Kathmandu, Nepal</p>
-      <div className="flex flex-col gap-2 max-h-96 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
-        {duration === 15 &&
-          timeSlots.map((time, index) => (
-            <button
-              key={index}
-              onClick={() => handleTimeSlotClick(time)}
-              className={`px-2 py-4 text-gray-600 border rounded-sm text-center cursor-pointer ${
-                selectedTime === time
-                  ? "bg-transparent text-blue-400"
-                  : "bg-gray-100 hover:bg-gray-200"
-              }`}
-            >
-              {time}
-            </button>
-          ))}
-      </div>
-    </div>
-  </div>
-</div>
+        {/* Booking Form */}
+        <div className="flex w-full items-center justify-center gap-4 py-8 shadow-md mx-auto">
+          {/* Left: Calendar */}
+          <div className="hidden  max-w-1/2 md:flex flex-col items-center justify-center bg-[#425B76] py-6">
+            <div className="p-6 bg-gray-400 border rounded-full w-20 h-20 flex items-center justify-center">
+              <IoPerson className="text-5xl" />
+            </div>
+            <div className="max-w-md mx-auto shadow-lg rounded-md mt-10">
+              <h3 className="text-2xl font-sans mb-4 text-center text-white">
+                Meet with Kristoffer Nystrøm
+              </h3>
+              <StyledCalendar
+                onChange={setSelectedDate}
+                value={selectedDate}
+                tileDisabled={tileDisabled}
+                onActiveStartDateChange={handleActiveStartDateChange}
+                activeStartDate={activeStartDate}
+                calendarType="gregory"
+                prev2Label={null}
+                next2Label={null}
+              />
+            </div>
+          </div>
 
-{/* Display DemoCart */}
-<div className={`mt-44 ${selectedTime === null ? "hidden" : ""}`}>
-  <DemoCart selectedDate={selectedDate} selectedTime={selectedTime}/>
-</div>
+          {/* Right: Time Slots */}
+          <div className="w-full md:w-1/2 bg-white pl-4 rounded-md pr-8 shadow-lg max-w-sm py-10">
+            <h3 className="text-md font-normal text-[#425B76] mb-4">
+              How long do you need?
+            </h3>
+            <div className="flex mb-4">
+              <button
+                onClick={() => setDuration(15)}
+                className={`text-xs font-light border border-gray-500 px-9 py-2 rounded-sm ${
+                  duration === 15 ? "bg-blue-200" : ""
+                }`}
+              >
+                15 mins
+              </button>
+              <button
+                onClick={() => setDuration(30)}
+                className={`text-xs font-light border border-gray-500 px-9 py-2 rounded-sm ${
+                  duration === 30 ? "bg-blue-200" : ""
+                }`}
+              >
+                30 mins
+              </button>
+              <button
+                onClick={() => setDuration(60)}
+                className={`text-xs font-light border border-gray-500 px-9 py-2 rounded-sm ${
+                  duration === 60 ? "bg-blue-200" : ""
+                }`}
+              >
+                1 hour
+              </button>
+            </div>
+            <h3 className="text-md font-normal text-[#425B76]">
+              What time works best
+            </h3>
+            <p className="text-md font-light text-[#425B76] mb-4">
+              Showing times for{" "}
+              <span className="text-md font-normal text-[#425B76]">
+                {selectedDate.toDateString()}
+              </span>
+            </p>
+            <p className="text-sm mb-4 text-blue-400">
+              UTC +05:45 Kathmandu, Nepal
+            </p>
+            <div className="flex flex-col gap-2 max-h-96 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+              {duration === 15 &&
+                timeSlots.map((time, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleTimeSlotClick(time)}
+                    className={`px-2 py-4 text-gray-600 border rounded-sm text-center cursor-pointer ${
+                      selectedTime === time
+                        ? "bg-transparent text-blue-400"
+                        : "bg-gray-100 hover:bg-gray-200"
+                    }`}
+                  >
+                    {time}
+                  </button>
+                ))}
+            </div>
+          </div>
+        </div>
+      </div>
 
+      {/* Display DemoCart */}
+      <div className={`mt-44 ${selectedTime === null ? "hidden" : ""}`}>
+        <DemoCart selectedDate={selectedDate} selectedTime={selectedTime} />
+      </div>
     </>
   );
 };

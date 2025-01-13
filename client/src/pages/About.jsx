@@ -4,9 +4,9 @@ import Cart from "../components/Cart";
 const About = () => {
   return (
     <>
-      <section className="h-screen mt-20 w-full">
-        <div className="flex flex-col md:flex-row gap-2 ">
-          <div className="  bg-slate-500 md:w-1/2 md:pl-40 md:pr-5 md:py-10 md:order-1 order-1">
+      <section className="h-fit mt-20 w-full">
+        <div className="flex flex-col md:flex-row gap-2 px-2">
+          <div className="  bg-slate-500 md:w-1/2 md:pl-40 md:pr-5 md:py-10 md:order-1 order-1 ">
             <h1 className="text-sm text-slate-800 text-center bg-slate-100 px-2 rounded-sm mb-6">
               Who are we
             </h1>
@@ -43,7 +43,7 @@ const About = () => {
 
         {/* why to choose? */}
 
-        <div className="flex flex-col md:flex-row gap-2 mt-10 ml-40  ">
+        <div className="flex flex-col md:flex-row gap-2 md:mt-10 md:ml-40 px-2 ">
           <div className="  bg-slate-500 md:w-11/12 md:pr-8 md:pl-32 md:py-10 md:order-1 order-1">
             <h1 className="text-sm text-slate-800 text-center bg-slate-100 px-2 rounded-sm mb-6">
               Why Choose Code One LLC?
