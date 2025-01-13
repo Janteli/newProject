@@ -19,6 +19,7 @@ const NavBar = () => {
         setIsScrolled(false);
       }
     };
+    console.log(location.pathname);
 
     // Only add the scroll listener if on the desired page
     if (location.pathname === "/codeone-account") {
@@ -29,10 +30,10 @@ const NavBar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [location]);
- 
+  }, [location.pathname]);
+
   // console.log(isScrolled)
- 
+
   const handleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -41,46 +42,54 @@ const NavBar = () => {
     setDropdownOpen(index);
   };
   return (
-    <nav className={`fixed  top-0 left-0 w-full flex h-20 md:h-24 justify-between md:px-20 md:py-6  px-2 py-3 z-50 ${isScrolled === true ? "bg-white":"bg-black"}`}>
+    <nav
+      className={`fixed  top-0 left-0 w-full flex h-20 md:h-24 justify-between md:px-20 md:py-6  px-2 py-3 z-50 ${
+        isScrolled === true ? "bg-white" : "bg-[#282828]"
+      }`}
+    >
       <div className="w-1/3 h-7 md:h-10 flex justify-start   ">
-       <Link to = '/'>
-       <div className="h-[35px]">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="100%"
-            height="100%"
-            viewBox="0 0 112.8 142.8"
-            className={`svglogo ${isScrolled ? "fill-black" : "fill-white"}`}
-          >
-            <rect x="37.6" width="37.6" height="18.8"></rect>
-            <rect x="18.8" y="18.8" width="18.8" height="18.8"></rect>
-            <rect y="37.6" width="18.8" height="105.2"></rect>
-            <rect x="75.2" y="18.8" width="18.8" height="18.8"></rect>
-            <rect x="94" y="37.6" width="18.8" height="105.2"></rect>
-          </svg>
-        </div>
-       </Link>
+        <Link to="/">
+          <div className="h-[35px]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="100%"
+              height="100%"
+              viewBox="0 0 112.8 142.8"
+              className={`svglogo ${isScrolled ? "fill-black" : "fill-white"}`}
+            >
+              <rect x="37.6" width="37.6" height="18.8"></rect>
+              <rect x="18.8" y="18.8" width="18.8" height="18.8"></rect>
+              <rect y="37.6" width="18.8" height="105.2"></rect>
+              <rect x="75.2" y="18.8" width="18.8" height="18.8"></rect>
+              <rect x="94" y="37.6" width="18.8" height="105.2"></rect>
+            </svg>
+          </div>
+        </Link>
       </div>
       {/* TABS */}
       <div className="w-1/3 hidden md:block">
-        <div className={`flex  justify-center  px-2 py-3 -mt-8 z-10 ${isScrolled? "bg-white text-black": "bg-black text-white"}`}>
+        <div
+          className={`flex  justify-center  px-2 py-3 -mt-8 z-10 ${
+            isScrolled ? "bg-white text-[#282828]" : "bg-[#282828] text-white"
+          }`}
+        >
           <FlyoutLink href="#" FlyoutContent={ProductContent} className="">
-            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-100">
+            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
               Products
             </p>
           </FlyoutLink>
           <FlyoutLink href="#" FlyoutContent={ServicesContent}>
-            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-100">
+            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
               Services
             </p>
           </FlyoutLink>
           <FlyoutLink href="#" FlyoutContent={CompanyContent}>
-            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-100">
+            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
               Company
             </p>
           </FlyoutLink>
           <FlyoutLink href="#" FlyoutContent={ResourcesContent}>
-            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-100">
+            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
               Resources
             </p>
           </FlyoutLink>
@@ -90,17 +99,24 @@ const NavBar = () => {
       {/* BUTTONS */}
       <div className="md:mt-2 md:pr-5 w-1/3 flex justify-end">
         <div className=" space-x-2 hidden md:flex">
-          <button className="px-3 py-0 border border-black rounded-md hover:bg-gray-100 text-xs">
-           <Link to="/login">
-           Login
-           </Link>
+          <button
+            className={`px-3 py-0   text-xs ${
+              isScrolled
+                ? "border-black border rounded-md hover:bg-gray-100 "
+                : "bg-[#282828] text-white border rounded-md"
+            }`}
+          >
+            <Link to="/login">Login</Link>
           </button>
-          
-          <button className="px-3 py-0 font-normal bg-black text-white rounded-md hover:bg-gray-800 text-xs">
-          <Link to="/book-a-demo">
-            Book a demo
-          </Link>
 
+          <button
+            className={`px-3 py-0 font-normal text-xs ${
+              isScrolled
+                ? "bg-[#282828] text-[#fff]"
+                : "bg-[#fff] text-[#282828] border rounded-md  "
+            }`}
+          >
+            <Link to="/book-a-demo">Book a demo</Link>
           </button>
         </div>
         {/* hamburger */}
@@ -137,19 +153,20 @@ const NavBar = () => {
         </div>
         {/* toggling menu */}
         <div className={`${menuOpen ? "block" : "hidden"} `}>
-          <div className="flex flex-grow overflow-y-hidden flex-col justify-center text-black  bg-white px-2 py-3  z-10">
+          <div className="flex flex-grow overflow-y-hidden flex-col justify-center text-[#282828]  bg-white px-2 py-3  z-10">
             <ul className="space-y-4 mb-6">
               {/* Products Dropdown */}
-              <li onMouseEnter={() => toggleDropdown(1)}
-                  onMouseLeave={() => toggleDropdown(null)}>
-                <button
-                  className="w-full text-left font-normal  py-2 text-xl"
-                  
-                >
+              <li
+                onMouseEnter={() => toggleDropdown(1)}
+                onMouseLeave={() => toggleDropdown(null)}
+              >
+                <button className="w-full text-left font-normal  py-2 text-xl">
                   Products
                 </button>
                 {dropdownOpen === 1 && (
-                  <div className="pl-4 space-y-2 transition-all duration-300">
+                  <div className="pl-4 space-y-2 transition-all duration-300"
+                    onClick={()=>setMenuOpen(false)}
+                  >
                     <div className="px-2 py-3 hover:bg-gray-200 rounded-md">
                       <div className="flex gap-10 px-1">
                         <div className="h-10 w-10 ">
@@ -178,7 +195,9 @@ const NavBar = () => {
                           />
                         </div>
                         <div>
-                          <h4 className="text-xs font-normal">Code One LLC Wallet</h4>
+                          <h4 className="text-xs font-normal">
+                            Code One LLC Wallet
+                          </h4>
                           <p className="text-xs font-normal text-gray-500">
                             Institutional Crypto Custody
                           </p>
@@ -209,56 +228,59 @@ const NavBar = () => {
               </li>
 
               {/* Services Dropdown */}
-              <li onMouseEnter={() => toggleDropdown(2)}
-                  onMouseLeave={() => toggleDropdown(null)}>
-                <button
-                  className="w-full text-left font-normal  py-2 text-xl"
-                >
+              <li
+                onMouseEnter={() => toggleDropdown(2)}
+                onMouseLeave={() => toggleDropdown(null)}
+              >
+                <button className="w-full text-left font-normal  py-2 text-xl">
                   Services
                 </button>
                 {dropdownOpen === 2 && (
                   <div className="pl-4 space-y-2 transition-all duration-300">
-                    <Link to='/service'>
-                    <div className="px-2 py-3 hover:bg-gray-200 rounded-md">
-                      <div className="flex gap-10 px-1">
-                        <div className="h-10 w-10 ">
-                          <img
-                            src="https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/6499418e8e5e9efd16b78ffc_Stack-p-500.webp"
-                            alt="stack"
-                          />
+                    <Link to="/service">
+                      <div className="px-2 py-3 hover:bg-gray-200 rounded-md"
+                       onClick={()=>setMenuOpen(false)}
+                      >
+                        <div className="flex gap-10 px-1">
+                          <div className="h-10 w-10 ">
+                            <img
+                              src="https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/6499418e8e5e9efd16b78ffc_Stack-p-500.webp"
+                              alt="stack"
+                            />
+                          </div>
+                          <Link to={"/service"}>
+                            <div>
+                              <h4 className="text-xs font-normal text-[#282828]">
+                                One LLC Flow
+                              </h4>
+                              <p className="text-xs font-normal text-gray-500">
+                                report of funds and risks
+                              </p>
+                            </div>
+                          </Link>
                         </div>
-                        <Link to={"/service"}>
-                        <div>
-                          <h4 className="text-xs font-normal text-black ">
-                            One LLC Flow
-                          </h4>
-                          <p className="text-xs font-normal text-gray-500">
-                            report of funds and risks
-                          </p>
-                        </div>
-                        </Link>
                       </div>
-                    </div>
                     </Link>
                   </div>
                 )}
               </li>
 
               {/* Company Dropdown */}
-              <li onMouseEnter={() => toggleDropdown(3)}
-                  onMouseLeave={() => toggleDropdown(null)}>
-                <button
-                  className="w-full text-left font-normal  py-2 text-xl"
-                  
-                >
+              <li
+                onMouseEnter={() => toggleDropdown(3)}
+                onMouseLeave={() => toggleDropdown(null)}
+              >
+                <button className="w-full text-left font-normal  py-2 text-xl">
                   Company
                 </button>
                 {dropdownOpen === 3 && (
-                  <div className="pl-4 space-y-2 transition-all duration-300">
+                  <div className="pl-4 space-y-2 transition-all duration-300"
+                  onClick={()=>setMenuOpen(false)}
+                  >
                     <div className="flex px-2 py-6 hover:bg-gray-200 rounded-md">
-                     <Link to="/about">
-                     <h4 className="text-xs font-normal">About One LLC </h4>
-                     </Link>
+                      <Link to="/about">
+                        <h4 className="text-xs font-normal">About One LLC </h4>
+                      </Link>
                     </div>
                     <div className="flex px-2 py-6 hover:bg-gray-200 rounded-md">
                       <h4 className="text-xs font-normal">Partners </h4>
@@ -274,16 +296,17 @@ const NavBar = () => {
               </li>
 
               {/* Resources Dropdown */}
-              <li  onMouseEnter={() => toggleDropdown(4)}
-                  onMouseLeave={() => toggleDropdown(null)}>
-                <button
-                  className="w-full text-left font-normal  py-2 text-xl"
-                 
-                >
+              <li
+                onMouseEnter={() => toggleDropdown(4)}
+                onMouseLeave={() => toggleDropdown(null)}
+              >
+                <button className="w-full text-left font-normal  py-2 text-xl">
                   Resources
                 </button>
                 {dropdownOpen === 4 && (
-                  <div className="pl-4 space-y-2 transition-all duration-300">
+                  <div className="pl-4 space-y-2 transition-all duration-300"
+                  onClick={()=>setMenuOpen(false)}
+                  >
                     <div className="flex px-2 py-6 hover:bg-gray-200 rounded-md">
                       <h4 className="text-xs font-normal">News </h4>
                     </div>
@@ -303,7 +326,7 @@ const NavBar = () => {
               <button className="px-3 py-3 border border-black rounded-md hover:bg-gray-100 text-xs ">
                 Login
               </button>
-              <button className="px-3 py-3 font-normal bg-black text-white rounded-md hover:bg-gray-800 text-xs">
+              <button className="px-3 py-3 font-normal bg-[#282828] text-white rounded-md hover:bg-gray-800 text-xs">
                 Book a demo
               </button>
             </div>
@@ -316,22 +339,26 @@ const NavBar = () => {
 
 const FlyoutLink = ({ children, href, FlyoutContent }) => {
   const [open, setOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const location = useLocation()
+  const location = useLocation();
 
-  useEffect(()=>{
-    const handleScroll = ()=>{
-      if(window.scrollY > 10){
-        setIsScrolled(true)
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
       } else {
-        setIsScrolled(false)
+        setIsScrolled(false);
       }
+    };
+    if ((location.pathname = "/codeone-account")) {
+      window.addEventListener("scroll", handleScroll);
     }
-    if(location.pathname = "/codeone-account"){
-      window.addEventListener("scroll", handleScroll)
-    }
-  },[location])
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [location]);
 
   const showFlyout = open && FlyoutContent;
   return (
@@ -340,7 +367,12 @@ const FlyoutLink = ({ children, href, FlyoutContent }) => {
       onMouseLeave={() => setOpen(false)}
       className="group relative h-fit w-fit"
     >
-      <a href={href} className={`relative  text-sm px-2 ${isScrolled ? "bg-white text-[#121212]": "bg-black text-white"}`}>
+      <a
+        href={href}
+        className={`relative  text-sm px-2 ${
+          isScrolled ? "bg-white text-[#282828]" : "bg-[#282828] text-white"
+        }`}
+      >
         {children}
         {/* <span
           style={{
@@ -362,7 +394,7 @@ const FlyoutLink = ({ children, href, FlyoutContent }) => {
             exit={{ opacity: 0, y: 15 }}
             style={{ translate: "-20%" }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="absolute left-1/2 top- -translate-x-1/2 bg-white text-black"
+            className="absolute left-1/2 top- -translate-x-1/2 bg-white text-[#282828]"
           >
             {/* <div className="absolute -top-6 left-0 right-0 h-6 bg-transparent" /> */}
             {/* <div className="absolute left-1/2 top-0 h-4 w-4  -translate-y-1/2 rotate-45 bg-white" /> */}
@@ -440,24 +472,25 @@ const ServicesContent = () => {
     <div className="h-24 w-96 bg-white px-2 py-3 ">
       <div className="flex flex-col gap-6 shadow-md px-3 py-2 bg-white">
         <Link to="/service">
-        <div className="px-2 py-3 hover:bg-gray-200 rounded-md pointer">
-          <div className="flex gap-10 px-1">
-            <div className="h-10 w-10 ">
-              <img
-                src="https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/6499418e8e5e9efd16b78ffc_Stack-p-500.webp"
-                alt="stack"
-              />
-            </div>
-            <div>
-              <h4 className="text-xs font-normal text-black ">Code One LLC Flow</h4>
-              <p className="text-xs font-normal text-gray-500">
-                report of funds and risks
-              </p>
+          <div className="px-2 py-3 hover:bg-gray-200 rounded-md pointer">
+            <div className="flex gap-10 px-1">
+              <div className="h-10 w-10 ">
+                <img
+                  src="https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/6499418e8e5e9efd16b78ffc_Stack-p-500.webp"
+                  alt="stack"
+                />
+              </div>
+              <div>
+                <h4 className="text-xs font-normal text-[#282828] ">
+                  Code One LLC Flow
+                </h4>
+                <p className="text-xs font-normal text-gray-500">
+                  report of funds and risks
+                </p>
+              </div>
             </div>
           </div>
-        </div>
         </Link>
-        
       </div>
     </div>
   );
@@ -469,7 +502,7 @@ const CompanyContent = () => {
       <div className="flex flex-col  gap-4 shadow-md px-3 py-2 bg-white">
         <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
           <Link to="/about">
-          <h4 className="text-xs font-normal">About Code One LLC </h4>
+            <h4 className="text-xs font-normal">About Code One LLC </h4>
           </Link>
         </div>
         <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
