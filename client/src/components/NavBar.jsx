@@ -14,7 +14,7 @@ const NavBar = () => {
     // Function to handle the scroll event
     // console.log(location)
     const handleScroll = () => {
-      if (window.scrollY > 10) {
+      if (window.scrollY > 665) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
