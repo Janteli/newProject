@@ -93,11 +93,13 @@ const HomePageThree = () => {
           </div>
 
           <div className=" col-span-1 bg-gray-100 flex items-center justify-center rounded-md md:order-2 order-1">
-            <div className="flex items-center justify-center h-96 w-96">
+            <div className="relative flex items-center justify-center h-96 w-96">
+            <div className="absolute inset-0 blur-3xl opacity-95 bg-gradient-to-r from-[#d6f719fb] to-blue-900 rounded-lg z-10"></div>
+
               <img
                 src="../src/assets/images/img1.jpg"
                 alt="img1"
-                className="h-full inset-0 w-full object-contain"
+                className="h-full inset-0 w-full object-contain z-20 "
               />
             </div>
           </div>

@@ -5,26 +5,20 @@ const HomePageOne = () => {
     <>
       <div className="bg-gray-100 ">
         <div className="md:mt-3 mb-0">
-          <div className="flex flex-row justify-center   md:pt-14 pt-8">
+          <div className="flex flex-row justify-center md:pt-14 pt-8 px-4 space-x-1">
             <h1
-              className="bg-custom-gradient bg-200% md:text-3xl text-2xl  text-black md:px-auto md:py-5 text-center md:leading-10 space-x-1"
+              className="bg-custom-gradient bg-200% md:text-3xl text-xl text-black px-4 md:py-5 text-center md:leading-10 space-x-1 whitespace-nowrap"
               style={{
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
             >
-              <span className="  px-2 rounded-md ">
-                Money Transmitter License Consulting,
-              </span>
-              <br /><span className="text  px-2 rounded-md">
-                MSB, Crypto
-              </span>{" "}
-              and{" "}
-              <span className="text-indigo-700 px-2 rounded-md">
-                Fintechs
-              </span>
+              Money Transmitter License Consulting,
+              <br />
+              MSB, Crypto and Fintechs
             </h1>
           </div>
+
           <div className="flex flex-row justify-center  text-center  font-semibold mt-6">
             <p className="font-normal text-sm text-gray-500 tracking-tighter mb-4">
               At Code One LLC, we specialize in guiding businesses through the

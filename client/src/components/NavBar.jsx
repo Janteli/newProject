@@ -148,13 +148,13 @@ const NavBar = () => {
       </div>
       {/* Mobile menus */}
       <div
-        className={`fixed md:hidden bg-white inset-0 flex flex-col px-2 py-3 h-screen  ${
+        className={`fixed md:hidden bg-white inset-0 flex flex-col px-1 py-1 h-screen z-10  ${
           menuOpen ? "block" : "hidden"
         }`}
       >
         <div className="w-full h-7 flex justify-between mb-2">
-          <div>
-            <svg
+          <div className="w-16 h-16 z-20">
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               width="100%"
               height="100%"
@@ -166,7 +166,8 @@ const NavBar = () => {
               <rect y="37.6" width="18.8" height="105.2"></rect>
               <rect x="75.2" y="18.8" width="18.8" height="18.8"></rect>
               <rect x="94" y="37.6" width="18.8" height="105.2"></rect>
-            </svg>
+            </svg> */}
+            <img src="../logo.png" alt="logo" className="h-full w-full inset-0 object-contain"/>
           </div>
           {/* Hamburger */}
           <div className="nav-toggle" onClick={handleMenu}>
@@ -175,7 +176,7 @@ const NavBar = () => {
         </div>
         {/* toggling menu */}
         <div className={`${menuOpen ? "block" : "hidden"} `}>
-          <div className="flex flex-grow overflow-y-hidden flex-col justify-center text-[#282828]  bg-white px-2 py-3  z-10">
+          <div className="flex flex-grow overflow-y-hidden flex-col justify-center text-[#282828]  bg-white px-2 py-8  z-10">
             <ul className="space-y-4 mb-6">
               {/* Products Dropdown */}
               <li

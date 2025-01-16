@@ -12,7 +12,7 @@ const HomePageTwo = () => {
       <div className="md:mt-3 md:mb-8">
         <div className="flex flex-row justify-center">
           <h1
-            className="font-normal bg-custom-gradient md:text-3xl px-auto py-4 text-center leading-tight space-x-1"
+            className="font-normal bg-custom-gradient md:text-3xl  py-4 text-center leading-tight space-x-1 whitespace-nowrap"
             style={{
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -24,7 +24,7 @@ const HomePageTwo = () => {
               Money Transmitter License and <br />
             </span>
 
-            <span> Blockchain BusinessStrategy. </span>
+            <span> Blockchain Business Strategy. </span>
           </h1>
         </div>
 
@@ -41,7 +41,7 @@ const HomePageTwo = () => {
           src="../src/assets/images/img3.webp"
           className="w-full h-full object-cover rounded-md"
         />
-        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-gray-950/80 via-gray-950/60 to-transparent blur-lg z-20"></div>
+        <div className="absolute bottom-0 left-0 w-full h-48  bg-gradient-to-t from-yellow-300/80 via-yellow-400/60 to-transparent blur-3xl z-20"></div>
       </div>
     </div>
   );
