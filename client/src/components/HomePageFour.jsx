@@ -32,13 +32,13 @@ const HomePageFour = () => {
   return (
     <div className="mt-20">
       <div className=" ">
-        <h1 className="text-center text-4xl font-normal mb-2">
+        <h1 className="text-center text-3xl font-normal px-3 mb-2">
           How
-          <span className="text-blue-600 bg-blue-100 px-3 rounded-sm mr-0">
-            We
+          <span className="text-blue-600 bg-blue-100 px-3  rounded-sm ">
+          We
           </span>
-          <span className="bg-gradient-to-r from-[#D8FFA7] to-[#D6F719] px-3 rounded-sm -mr-32">
-            Work
+          <span className="bg-gradient-to-r from-[#D8FFA7] to-[#D6F719] px-3 rounded-sm ">
+          Work
           </span>
         </h1>
 
