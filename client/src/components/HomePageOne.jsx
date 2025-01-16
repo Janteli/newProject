@@ -7,7 +7,7 @@ const HomePageOne = () => {
         <div className="md:mt-3 mb-0">
           <div className="flex flex-row justify-center   md:pt-14 pt-8">
             <h1
-              className="bg-custom-gradient bg-200% md:text-3xl text-lg text-black md:px-auto md:py-5 text-center leading-10 space-x-1"
+              className="bg-custom-gradient bg-200% md:text-3xl text-2xl  text-black md:px-auto md:py-5 text-center md:leading-10 space-x-1"
               style={{
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
@@ -16,8 +16,7 @@ const HomePageOne = () => {
               <span className="  px-2 rounded-md ">
                 Money Transmitter License Consulting,
               </span>
-              <br />
-              <span className="text  px-2 rounded-md">
+              <br /><span className="text  px-2 rounded-md">
                 MSB, Crypto
               </span>{" "}
               and{" "}

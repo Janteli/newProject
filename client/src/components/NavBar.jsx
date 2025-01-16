@@ -52,7 +52,7 @@ const NavBar = () => {
     >
       <div className="w-1/3 h-7 md:h-10 flex justify-start   ">
         <Link to="/">
-          <div className="h-16">
+          <div className="h-16 -mt-2">
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               width="100%"
@@ -92,7 +92,7 @@ const NavBar = () => {
             FlyoutContent={ServicesContent}
             isScrolled={isScrolled}
           >
-            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
+            <p className="text-xs px-4 pt-3 mr-4 rounded-sm hover:bg-gray-600">
               Services
             </p>
           </FlyoutLink>
@@ -101,7 +101,7 @@ const NavBar = () => {
             FlyoutContent={CompanyContent}
             isScrolled={isScrolled}
           >
-            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
+            <p className="text-xs px-4 pt-3 mr-4 rounded-sm hover:bg-gray-600">
               Company
             </p>
           </FlyoutLink>
@@ -110,7 +110,7 @@ const NavBar = () => {
             FlyoutContent={ResourcesContent}
             isScrolled={isScrolled}
           >
-            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
+            <p className="text-xs px-4 pt-3 mr-4 rounded-sm hover:bg-gray-600">
               Resources
             </p>
           </FlyoutLink>
@@ -118,8 +118,9 @@ const NavBar = () => {
       </div>
 
       {/* BUTTONS */}
-      <div className="md:mt-2 md:pr-5 w-1/3 flex justify-end">
-        <div className=" space-x-2 hidden md:flex">
+      <div className="md:mt-0 md:pr-5 w-1/3 flex justify-end">
+        <div className="   hidden md:flex">
+          
           {/* <button
             className={`px-3 py-0   text-xs ${
               isScrolled
@@ -131,7 +132,7 @@ const NavBar = () => {
           </button> */}
 
           <button
-            className={`px-3 -mt-4 border shadow-md py-0 font-normal text-xs rounded-md ${
+            className={`px-3 mt-0 border shadow-md font-normal text-xs rounded-md ${
               isScrolled
                 ? "bg-[#282828] text-[#fff]"
                 : "bg-[#fff] text-[#282828] border rounded-md  "

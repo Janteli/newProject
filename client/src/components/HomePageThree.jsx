@@ -3,25 +3,25 @@ import React from "react";
 const HomePageThree = () => {
   return (
     <div>
-      <div className="md:mt-24 ">
+      <div className="md:mt-24 mt-14">
         <div className="">
-          <h1 className=" text-center text-[30px] font-normal">
-            Easy.
-            <span className="text-blue-600 bg-blue-100 px-4 rounded-sm mr-0">
+          <h1 className="space-x-2 -m-2 text-center md:text-3xl text-2xl font-normal">
+            <span className="px-2 md:px-0">Easy.</span>
+            <span className="text-blue-600 bg-blue-100 md:px-4 px-2 rounded-sm mr-0">
               Safe.
             </span>
-            <span className="bg-gradient-to-r from-[#D8FFA7] to-[#D6F719] px-3 rounded-sm -mr-8">
+            <span className="bg-gradient-to-r from-[#D8FFA7] to-[#D6F719] md:px-3 px-2 rounded-sm -mr-8">
               Compliant.
             </span>
           </h1>
         </div>
-        <div className="mt-10">
+        <div className="mt-8">
           <p className="font-normal text-sm text-gray-500 text-center">
-            Demonstrated expertise in ensuring compliance with the established
+            Demonstrated expertise in ensuring compliance <br/> with the established
             US regulatory framework.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-32 md:px-24 px-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:mt-12 md:px-24 px-4 gap-6">
           <div className="col-span-1 rounded-md md:order-1 order-2">
             <div className="px-2 rounded-md bg-gray-200 py-1 w-32 mb-8">
               <p className="text-xs font-normal">Complaince stack</p>
@@ -56,27 +56,37 @@ const HomePageThree = () => {
 
               <ul className="list-disc ">
                 <li className="text-sm text-gray-500 mb-2">
-                  <span className="font-normal text-[#282828]">Expertise Across All States:</span> We specialize in navigating the
-                  nuances of licensing requirements across all U.S.
-                  jurisdictions, ensuring your applications are accurate,
-                  complete, and fully compliant.
+                  <span className="font-normal text-[#282828]">
+                    Expertise Across All States:
+                  </span>
+                  We specialize in navigating the nuances of licensing
+                  requirements across all U.S. jurisdictions, ensuring your
+                  applications are accurate, complete, and fully compliant.
                 </li>
                 <li className="text-sm text-gray-500 mb-2">
-                  <span className="font-normal text-[#282828]">Specialized Blockchain and Crypto Solutions:</span> Our team
-                  anticipates regulatory trends and delivers tailored support
-                  for blockchain infrastructure, cryptocurrency businesses, and
-                  digital payments innovators.
+                  <span className="font-normal text-[#282828]">
+                    Specialized Blockchain and Crypto Solutions:
+                  </span>{" "}
+                  Our team anticipates regulatory trends and delivers tailored
+                  support for blockchain infrastructure, cryptocurrency
+                  businesses, and digital payments innovators.
                 </li>
                 <li className="text-sm text-gray-500 mb-2">
-                <span className="font-normal text-[#282828]">End-to-End Licensing and Compliance Support From initial:</span> applications to ongoing compliance management, Code One LLC
+                  <span className="font-normal text-[#282828]">
+                    End-to-End Licensing and Compliance Support From initial:
+                  </span>{" "}
+                  applications to ongoing compliance management, Code One LLC
                   provides comprehensive consulting services designed to meet
                   your business’s unique needs.
                 </li>
                 <li className="text-sm text-gray-500 mb-2">
-                <span className="font-normal text-[#282828]">Accelerated Time to Market:</span> Leveraging proven strategies and
-                  strong relationships with state regulators, we streamline
-                  licensing and blockchain integration, minimizing delays and
-                  expediting your time to market.
+                  <span className="font-normal text-[#282828]">
+                    Accelerated Time to Market:
+                  </span>{" "}
+                  Leveraging proven strategies and strong relationships with
+                  state regulators, we streamline licensing and blockchain
+                  integration, minimizing delays and expediting
+                  your time to market.
                 </li>
               </ul>
             </div>
@@ -84,29 +94,32 @@ const HomePageThree = () => {
 
           <div className=" col-span-1 bg-gray-100 flex items-center justify-center rounded-md md:order-2 order-1">
             <div className="flex items-center justify-center h-96 w-96">
-              <img src="../src/assets/images/img1.jpg" alt="img1" className="h-full inset-0 w-full object-contain" />
+              <img
+                src="../src/assets/images/img1.jpg"
+                alt="img1"
+                className="h-full inset-0 w-full object-contain"
+              />
             </div>
           </div>
         </div>
       </div>
 
       {/* Info Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 bg-[url('https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/64a562b9492999ffae211108_grain_less.png')] bg-cover bg-center h-[600px] rounded-md mt-32">
+      <div className="grid grid-cols-1 md:grid-cols-2 bg-[url('https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/64a562b9492999ffae211108_grain_less.png')] bg-cover bg-center h-[600px] rounded-md md:mt-32 mt-12">
         <div className="col-span-1 max-h-[500px] w-full px-6 pt-2 rounded-md py-4">
           <div className="py-3">
-          
             <img
               src="../src/assets/images/dinxcropped.jpg"
               alt="person "
               className="rounded-md w-full h-[560px] object-cover"
             />
-
           </div>
         </div>
         <div className="col-span-1 flex items-center justify-center relative md:p-6 rounded-lg shadow-lg">
           <div className="hidden md:block md:absolute top-4 right-28 bg-transparent bg-opacity-50 px-4 py-2 rounded-lg">
             <h1 className="text-white font-normal text-sm mb-4">
-            We expertly guide businesses through licensing and regulatory requirements with safety and compliance assured.
+              We expertly guide businesses through licensing and regulatory
+              requirements with safety and compliance assured.
             </h1>
             <h1 className="text-white font-normal text-2xl ">
               Industries We Serve
@@ -135,22 +148,22 @@ const HomePageThree = () => {
               DAO's
             </h6>
             <h6 className="text-gray-300 border rounded-sm bg-transparent border-gray-300 px-3 py-2 font-light text-xs">
-              Institutional investors
+            • Institutional investors
             </h6>
             <h6 className="text-gray-300 border rounded-sm bg-transparent border-gray-300 px-3 py-2 font-light text-xs">
-              Family Offices
+            • Family Offices
             </h6>
             <h6 className="text-gray-300 border rounded-sm bg-transparent border-gray-300 px-3 py-2 font-light text-xs">
-              Traders
+            • Traders
             </h6>
             <h6 className="text-gray-300 border rounded-sm bg-transparent border-gray-300 px-3 py-2 font-light text-xs">
-              Investment funds
+            • Investment funds
             </h6>
             <h6 className="text-gray-300 border rounded-sm bg-transparent border-gray-300 px-3 py-2 font-light text-xs">
-              Brokers
+            •  Brokers
             </h6>
             <h6 className="text-gray-300 border rounded-sm bg-transparent border-gray-300 px-3 py-2 font-light text-xs">
-              Exchange
+            •  Exchange
             </h6>
           </div>
         </div>

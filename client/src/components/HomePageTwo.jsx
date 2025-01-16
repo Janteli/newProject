@@ -12,7 +12,7 @@ const HomePageTwo = () => {
       <div className="md:mt-3 md:mb-8">
         <div className="flex flex-row justify-center">
           <h1
-            className="font-normal bg-custom-gradient text-3xl px-auto py-4 text-center leading-tight space-x-1"
+            className="font-normal bg-custom-gradient md:text-3xl px-auto py-4 text-center leading-tight space-x-1"
             style={{
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -28,7 +28,7 @@ const HomePageTwo = () => {
           </h1>
         </div>
 
-        <div className="flex flex-row justify-center text-center   mt-2">
+        <div className="flex flex-row justify-center text-center mt-2">
           <p className=" text-sm text-gray-500">
             Enjoy seamless payments and conduct operational
             <br /> transactions with an IBAN account fit for purpose.
@@ -36,7 +36,7 @@ const HomePageTwo = () => {
         </div>
       </div>
 
-      <div className="w-full h-96 border rounded-md relative z-10">
+      <div className="w-full h-96 border rounded-md relative mt-4 z-10">
         <img
           src="../src/assets/images/img3.webp"
           className="w-full h-full object-cover rounded-md"
