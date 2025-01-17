@@ -22,28 +22,33 @@ const Footer = () => {
           {/* Inner Columns */}
           <div className="col-span-4 text-white pt-4 rounded-md">
             <p className="text-white text-xs mb-4">Services</p>
-            <p className="text-gray-400 text-xs font-light">Code One LLC Flow</p>
+            <p className="text-gray-400 text-xs font-light">
+              Code One LLC Flow
+            </p>
           </div>
           <div className="col-span-4 text-white pt-4 rounded-md">
-          <p className="text-white text-xs mb-4">Company</p>
-          <p className="text-gray-400 text-xs font-light mb-2">About Code One LLC</p>
-          <p className="text-gray-400 text-xs font-light">Contact</p>
-
+            <p className="text-white text-xs mb-4">Company</p>
+            <p className="text-gray-400 text-xs font-light mb-2">
+              About Code One LLC
+            </p>
+            <p className="text-gray-400 text-xs font-light">Contact</p>
           </div>
           <div className="col-span-4  text-white pt-4 rounded-md">
-          <p className="text-white text-xs mb-4">What's new</p>
-          <p className="text-gray-400 text-xs font-light mb-2">News</p>
-          <p className="text-gray-400 text-xs font-light mb-2">Twitter</p>
-          <p className="text-gray-400 text-xs font-light">Linkedin</p>
-
+            <p className="text-white text-xs mb-4">What's new</p>
+            <p className="text-gray-400 text-xs font-light mb-2">News</p>
+            <p className="text-gray-400 text-xs font-light mb-2">Twitter</p>
+            <p className="text-gray-400 text-xs font-light">Linkedin</p>
           </div>
         </div>
-        <div className="bg-[#121212] text-gray-300 text-xs font-light absolute bottom-0 left-0 w-full">
-        hello
+        <div className="bg-[#121212] text-gray-300 text-xs h-5xl font-light absolute bottom-0 left-0 w-full grid grid-cols-12">
+          <div className="col-span-6">
+            <p>©2025 CodeOne LLC All rights reserved</p>
+          </div>
+          <div className="col-span-2"></div>
+          <div className="col-span-2"></div>
+          <div className="col-span-2"></div>
+        </div>
       </div>
-      </div>
-
-      
     </div>
   );
 };

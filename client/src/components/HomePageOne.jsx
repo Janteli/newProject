@@ -7,7 +7,7 @@ const HomePageOne = () => {
         <div className="md:mt-3 mb-0">
           <div className="flex flex-row justify-center md:pt-14 pt-8 px-4 space-x-1">
             <h1
-              className="bg-custom-gradient bg-200% md:text-3xl text-xl text-black px-4 md:py-5 text-center md:leading-10 space-x-1 whitespace-nowrap"
+              className="bg-custom-gradient bg-200% md:text-3xl text-2xl text-black px-4 md:py-5 text-center md:leading-10 space-x-1 whitespace-wrap"
               style={{
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",

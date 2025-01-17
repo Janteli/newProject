@@ -17,8 +17,8 @@ const HomePageThree = () => {
         </div>
         <div className="mt-8">
           <p className="font-normal text-sm text-gray-500 text-center">
-            Demonstrated expertise in ensuring compliance <br/> with the established
-            US regulatory framework.
+            Demonstrated expertise in ensuring compliance <br /> with the
+            established US regulatory framework.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 md:mt-12 md:px-24 px-4 gap-6">
@@ -94,7 +94,7 @@ const HomePageThree = () => {
 
           <div className=" col-span-1 bg-gray-100 flex items-center justify-center rounded-md md:order-2 order-1">
             <div className="relative flex items-center justify-center h-96 w-96">
-            <div className="absolute inset-0 blur-3xl opacity-95 bg-gradient-to-r from-[#d6f719fb] to-blue-900 rounded-lg z-10"></div>
+              <div className="absolute inset-0 blur-3xl opacity-95 bg-gradient-to-r from-[#d6f719fb] to-blue-900 rounded-lg z-10"></div>
 
               <img
                 src="../src/assets/images/img1.jpg"
@@ -108,12 +108,12 @@ const HomePageThree = () => {
 
       {/* Info Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 bg-[url('https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/64a562b9492999ffae211108_grain_less.png')] bg-cover bg-center h-[600px] rounded-md md:mt-32 mt-12">
-        <div className="col-span-1 max-h-[500px] w-full px-6 pt-2 rounded-md py-4">
-          <div className="py-3">
+        <div className="col-span-1 max-h-[600px] w-full px-6 pt-2 rounded-md py-4">
+          <div className="w-full h-full pt-4">
             <img
-              src="../src/assets/images/dinxcropped.jpg"
-              alt="person "
-              className="rounded-md w-full h-[560px] object-cover"
+              src="../src/assets/images/stck.jpg"
+              alt="person"
+              className="rounded-md w-full h-full inset-0 object-cover object-right"
             />
           </div>
         </div>
@@ -121,20 +121,14 @@ const HomePageThree = () => {
           <div className="hidden md:block md:absolute top-4 right-28 bg-transparent bg-opacity-50 px-4 py-2 rounded-lg">
             <h1 className="text-white font-normal text-sm mb-4">
               We expertly guide businesses through licensing and regulatory
-              requirements with safety and compliance assured.
+              requirements with safety and compliance assured.
             </h1>
             <h1 className="text-white font-normal text-2xl ">
               Industries We Serve
             </h1>
-            {/* <h1 className="text-white font-normal text-2xl pl-16 -mt-2">
-              solution for business
-            </h1>
-            <h1 className="text-white font-normal text-[25px] pl-20 -mt-2">
-              payment accounts
-            </h1> */}
           </div>
           <div className="absolute bottom-2 right-2 bg-transparent bg-opacity-50 flex flex-wrap gap-2 w-96 justify-center md:justify-end">
-            <h6 className="text-gray-100 border rounded-sm bg-transparent  border-gray-100 px-3 py-2 font-light text-xs">
+            <h6 className="text-gray-100 border rounded-sm bg-transparent border-gray-100 px-3 py-2 font-light text-xs">
               • Fintech Companies
             </h6>
             <h6 className="text-gray-300 border rounded-sm bg-transparent border-gray-300 px-3 py-2 font-light text-xs">
@@ -150,22 +144,22 @@ const HomePageThree = () => {
               DAO's
             </h6>
             <h6 className="text-gray-300 border rounded-sm bg-transparent border-gray-300 px-3 py-2 font-light text-xs">
-            • Institutional investors
+              • Institutional investors
             </h6>
             <h6 className="text-gray-300 border rounded-sm bg-transparent border-gray-300 px-3 py-2 font-light text-xs">
-            • Family Offices
+              • Family Offices
             </h6>
             <h6 className="text-gray-300 border rounded-sm bg-transparent border-gray-300 px-3 py-2 font-light text-xs">
-            • Traders
+              • Traders
             </h6>
             <h6 className="text-gray-300 border rounded-sm bg-transparent border-gray-300 px-3 py-2 font-light text-xs">
-            • Investment funds
+              • Investment funds
             </h6>
             <h6 className="text-gray-300 border rounded-sm bg-transparent border-gray-300 px-3 py-2 font-light text-xs">
-            •  Brokers
+              • Brokers
             </h6>
             <h6 className="text-gray-300 border rounded-sm bg-transparent border-gray-300 px-3 py-2 font-light text-xs">
-            •  Exchange
+              • Exchange
             </h6>
           </div>
         </div>
