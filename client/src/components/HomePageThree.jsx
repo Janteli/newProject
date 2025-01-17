@@ -1,6 +1,6 @@
 import React from "react";
 import Img1 from "../../public/img1.jpg"
-import People from "../../public/people.jpg"
+import Group from "../../public/pro.avif"
 
 const HomePageThree = () => {
   return (
@@ -113,7 +113,7 @@ const HomePageThree = () => {
         <div className="col-span-1 max-h-[600px] w-full px-6 pt-2 rounded-md py-4">
           <div className="w-full h-full pt-4">
             <img
-              src={People}
+              src={Group}
               alt="person"
               className="rounded-md w-full h-full inset-0 object-cover object-right"
             />

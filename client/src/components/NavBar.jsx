@@ -92,7 +92,7 @@ const NavBar = () => {
             FlyoutContent={ServicesContent}
             isScrolled={isScrolled}
           >
-            <p className="text-xs px-4 pt-3 mr-4 rounded-sm hover:bg-gray-600">
+            <p className="text-xs px-4 py-3 mr-4 rounded-sm hover:bg-gray-200">
               Services
             </p>
           </FlyoutLink>
@@ -101,7 +101,7 @@ const NavBar = () => {
             FlyoutContent={CompanyContent}
             isScrolled={isScrolled}
           >
-            <p className="text-xs px-4 pt-3 mr-4 rounded-sm hover:bg-gray-600">
+            <p className="text-xs px-4 py-3 mr-4 rounded-sm hover:bg-gray-200">
               Company
             </p>
           </FlyoutLink>
@@ -110,7 +110,7 @@ const NavBar = () => {
             FlyoutContent={ResourcesContent}
             isScrolled={isScrolled}
           >
-            <p className="text-xs px-4 pt-3 mr-4 rounded-sm hover:bg-gray-600">
+            <p className="text-xs px-4 py-3 mr-4 rounded-sm hover:bg-gray-200">
               Resources
             </p>
           </FlyoutLink>
@@ -154,19 +154,6 @@ const NavBar = () => {
       >
         <div className="w-full h-7 flex justify-between mb-2">
           <div className="w-16 h-16 z-20">
-            {/* <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="100%"
-              height="100%"
-              viewBox="0 0 112.8 142.8"
-              className="svglogo"
-            >
-              <rect x="37.6" width="37.6" height="18.8"></rect>
-              <rect x="18.8" y="18.8" width="18.8" height="18.8"></rect>
-              <rect y="37.6" width="18.8" height="105.2"></rect>
-              <rect x="75.2" y="18.8" width="18.8" height="18.8"></rect>
-              <rect x="94" y="37.6" width="18.8" height="105.2"></rect>
-            </svg> */}
             <img src="../logo.png" alt="logo" className="h-full w-full inset-0 object-contain"/>
           </div>
           {/* Hamburger */}
@@ -489,8 +476,8 @@ const ProductContent = () => {
 
 const ServicesContent = () => {
   return (
-    <div className="h-24 w-96 bg-white px-2 py-3 ">
-      <div className="flex flex-col gap-6 shadow-md px-3 py-2 bg-white">
+    <div className="h-fit w-96 bg-white py-3 flex flex-col gap-6 shadow-md px-3">
+      
         <Link to="/service">
           <div className="px-2 py-3 hover:bg-gray-200 rounded-md pointer">
             <div className="flex gap-10 px-1">
@@ -511,15 +498,15 @@ const ServicesContent = () => {
             </div>
           </div>
         </Link>
-      </div>
+      
     </div>
   );
 };
 
 const CompanyContent = () => {
   return (
-    <div className="h-24 w-96 bg-white px-2 py-3 ">
-      <div className="flex flex-col  gap-4 shadow-md px-3 py-2 bg-white">
+    <div className="h-fit w-96 bg-white px-2 py-3 flex flex-col  gap-4 shadow-md">
+      
         <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
           <Link to="/about">
             <h4 className="text-xs font-normal">About Code One LLC </h4>
@@ -534,15 +521,14 @@ const CompanyContent = () => {
         {/* <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
           <h4 className="text-xs font-normal">Career </h4>
         </div> */}
-      </div>
+      
     </div>
   );
 };
 
 const ResourcesContent = () => {
   return (
-    <div className="h-24 w-96 bg-white px-2 py-3 ">
-      <div className="flex flex-col  gap-4 shadow-md px-3 py-2 bg-white">
+    <div className="h-fit w-96 bg-white px-2 py-3 flex flex-col  gap-4 shadow-md">
         <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
           <h4 className="text-xs font-normal">News </h4>
         </div>
@@ -552,7 +538,7 @@ const ResourcesContent = () => {
         <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
           <h4 className="text-xs font-normal">Advisor Directory </h4>
         </div>
-      </div>
+    
     </div>
   );
 };
