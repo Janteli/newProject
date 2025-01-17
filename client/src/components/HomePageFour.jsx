@@ -30,19 +30,19 @@ const HomePageFour = () => {
   ];
 
   return (
-    <div className="mt-20">
+    <div className="md:mt-20 mt-12">
       <div className=" ">
-        <h1 className="text-center text-4xl font-normal mb-2">
+        <h1 className="text-center text-3xl font-normal px-3 mb-2">
           How
-          <span className="text-blue-600 bg-blue-100 px-3 rounded-sm mr-0">
-            We
+          <span className="text-blue-600 bg-blue-100 px-3  rounded-sm ">
+          We
           </span>
-          <span className="bg-gradient-to-r from-[#D8FFA7] to-[#D6F719] px-3 rounded-sm -mr-32">
-            Work
+          <span className="bg-gradient-to-r from-[#D8FFA7] to-[#D6F719] px-3 rounded-sm ">
+          Work
           </span>
         </h1>
 
-        <p className="text-gray-400 text-center text-xs mt-6">
+        <p className="text-gray-500 text-center text-xs mt-6">
           We guide clients through every step—strategy, application, compliance
           integration,
           <br /> and ongoing support—to ensure seamless licensing and regulatory

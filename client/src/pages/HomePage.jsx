@@ -15,7 +15,7 @@ const HomePage = () => {
         <HomePageTwo />
         <HomePageThree />
         <HomePageFour />
-        <HomePageFive />
+        {/* <HomePageFive /> */}
       </div>
     </div>
   );

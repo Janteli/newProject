@@ -13,13 +13,13 @@ const Cart = ({ work }) => {
             <h4 className="mt-6 text-xs  font-normal">{work.title}</h4>
             {/* <h4 className="text-xs  font-normal">Account</h4> */}
 
-            <p className="mt-4 text-[12px] text-gray-400 mb-10">
+            <p className="mt-4 text-[12px] text-gray-500 mb-10">
               {work.description}
             </p>
 
-            <button className="absolute left-4 bottom-2 bg-white rounded-sm px-3 py-1 text-xs font-normal">
+            {/* <button className="absolute left-4 bottom-2 bg-white rounded-sm px-3 py-1 text-xs font-normal">
               View Product
-            </button>
+            </button> */}
           </div>
           </div>
   );

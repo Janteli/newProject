@@ -20,7 +20,7 @@ const NavBar = () => {
         setIsScrolled(false);
       }
     };
-    console.log("hello", location.pathname);
+    // console.log("hello", location.pathname);
 
     // Only add the scroll listener if on the desired page
     if (location.pathname === "/codeone-account") {
@@ -52,8 +52,8 @@ const NavBar = () => {
     >
       <div className="w-1/3 h-7 md:h-10 flex justify-start   ">
         <Link to="/">
-          <div className="h-[35px]">
-            <svg
+          <div className="h-16 -mt-2">
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               width="100%"
               height="100%"
@@ -65,7 +65,8 @@ const NavBar = () => {
               <rect y="37.6" width="18.8" height="105.2"></rect>
               <rect x="75.2" y="18.8" width="18.8" height="18.8"></rect>
               <rect x="94" y="37.6" width="18.8" height="105.2"></rect>
-            </svg>
+            </svg> */}
+            <img src="../logo.png" alt="logo" className="h-full w-full inset-0 object-contain"/>
           </div>
         </Link>
       </div>
@@ -76,7 +77,7 @@ const NavBar = () => {
             isScrolled ? "bg-white text-[#282828]" : "bg-[#282828] text-white"
           }`}
         >
-          <FlyoutLink
+          {/* <FlyoutLink
             href="#"
             FlyoutContent={ProductContent}
             className=""
@@ -85,13 +86,13 @@ const NavBar = () => {
             <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
               Products
             </p>
-          </FlyoutLink>
+          </FlyoutLink> */}
           <FlyoutLink
             href="#"
             FlyoutContent={ServicesContent}
             isScrolled={isScrolled}
           >
-            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
+            <p className="text-xs px-4 pt-3 mr-4 rounded-sm hover:bg-gray-600">
               Services
             </p>
           </FlyoutLink>
@@ -100,7 +101,7 @@ const NavBar = () => {
             FlyoutContent={CompanyContent}
             isScrolled={isScrolled}
           >
-            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
+            <p className="text-xs px-4 pt-3 mr-4 rounded-sm hover:bg-gray-600">
               Company
             </p>
           </FlyoutLink>
@@ -109,7 +110,7 @@ const NavBar = () => {
             FlyoutContent={ResourcesContent}
             isScrolled={isScrolled}
           >
-            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
+            <p className="text-xs px-4 pt-3 mr-4 rounded-sm hover:bg-gray-600">
               Resources
             </p>
           </FlyoutLink>
@@ -117,9 +118,10 @@ const NavBar = () => {
       </div>
 
       {/* BUTTONS */}
-      <div className="md:mt-2 md:pr-5 w-1/3 flex justify-end">
-        <div className=" space-x-2 hidden md:flex">
-          <button
+      <div className="md:mt-0 md:pr-5 w-1/3 flex justify-end">
+        <div className="   hidden md:flex">
+          
+          {/* <button
             className={`px-3 py-0   text-xs ${
               isScrolled
                 ? "border-black border rounded-md hover:bg-gray-100 "
@@ -127,16 +129,16 @@ const NavBar = () => {
             }`}
           >
             <Link to="/login">Login</Link>
-          </button>
+          </button> */}
 
           <button
-            className={`px-3 py-0 font-normal text-xs ${
+            className={`px-3 mt-0 border shadow-md font-normal text-xs rounded-md ${
               isScrolled
                 ? "bg-[#282828] text-[#fff]"
                 : "bg-[#fff] text-[#282828] border rounded-md  "
             }`}
           >
-            <Link to="/book-a-demo">Book a demo</Link>
+            <Link to="/book-a-demo">Book a meeting</Link>
           </button>
         </div>
         {/* hamburger */}
@@ -146,13 +148,13 @@ const NavBar = () => {
       </div>
       {/* Mobile menus */}
       <div
-        className={`fixed md:hidden bg-white inset-0 flex flex-col px-2 py-3 h-screen  ${
+        className={`fixed md:hidden bg-white inset-0 flex flex-col px-1 py-1 h-screen z-10  ${
           menuOpen ? "block" : "hidden"
         }`}
       >
         <div className="w-full h-7 flex justify-between mb-2">
-          <div>
-            <svg
+          <div className="w-16 h-16 z-20">
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               width="100%"
               height="100%"
@@ -164,7 +166,8 @@ const NavBar = () => {
               <rect y="37.6" width="18.8" height="105.2"></rect>
               <rect x="75.2" y="18.8" width="18.8" height="18.8"></rect>
               <rect x="94" y="37.6" width="18.8" height="105.2"></rect>
-            </svg>
+            </svg> */}
+            <img src="../logo.png" alt="logo" className="h-full w-full inset-0 object-contain"/>
           </div>
           {/* Hamburger */}
           <div className="nav-toggle" onClick={handleMenu}>
@@ -173,7 +176,7 @@ const NavBar = () => {
         </div>
         {/* toggling menu */}
         <div className={`${menuOpen ? "block" : "hidden"} `}>
-          <div className="flex flex-grow overflow-y-hidden flex-col justify-center text-[#282828]  bg-white px-2 py-3  z-10">
+          <div className="flex flex-grow overflow-y-hidden flex-col justify-center text-[#282828]  bg-white px-2 py-8  z-10">
             <ul className="space-y-4 mb-6">
               {/* Products Dropdown */}
               <li
@@ -188,6 +191,7 @@ const NavBar = () => {
                     className="pl-4 space-y-2 transition-all duration-300"
                     onClick={() => setMenuOpen(false)}
                   >
+                    <Link to='/codeone-account'>
                     <div className="px-2 py-3 hover:bg-gray-200 rounded-md">
                       <div className="flex gap-10 px-1">
                         <div className="h-10 w-10 ">
@@ -198,7 +202,7 @@ const NavBar = () => {
                         </div>
                         <div>
                           <h4 className="text-xs font-normal">
-                            Code One LLC Instant
+                            Code One LLC Account
                           </h4>
                           <p className="text-xs font-normal text-gray-500">
                             Real-Time Payments
@@ -206,6 +210,7 @@ const NavBar = () => {
                         </div>
                       </div>
                     </div>
+                    </Link>
 
                     <div className="px-2 py-3 hover:bg-gray-200 rounded-md">
                       <div className="flex gap-10 px-1">
@@ -423,6 +428,7 @@ const ProductContent = () => {
   return (
     <div className="h-24 w-96 bg-white px-2 py-3 ">
       <div className="flex flex-col gap-6 shadow-md px-3 py-2 bg-white">
+        <Link to="codeone-account">
         <div className="px-2 py-3 hover:bg-gray-200 rounded-md">
           <div className="flex gap-10 px-1">
             <div className="h-10 w-10 ">
@@ -432,13 +438,14 @@ const ProductContent = () => {
               />
             </div>
             <div>
-              <h4 className="text-xs font-normal">Code One LLC Instant</h4>
+              <h4 className="text-xs font-normal">Code One LLC Account</h4>
               <p className="text-xs font-normal text-gray-500">
-                Real-Time Payments
+                Payments & Collection
               </p>
             </div>
           </div>
         </div>
+        </Link>
 
         <div className="px-2 py-3 hover:bg-gray-200 rounded-md">
           <div className="flex gap-10 px-1">
@@ -493,12 +500,12 @@ const ServicesContent = () => {
                   alt="stack"
                 />
               </div>
-              <div>
-                <h4 className="text-xs font-normal text-[#282828] ">
-                  Code One LLC Flow
+              <div className="flex gap-2 mt-2">
+                <h4 className=" text-xs font-normal text-[#282828] ">
+                  Create an account
                 </h4>
                 <p className="text-xs font-normal text-gray-500">
-                  report of funds and risks
+                  Comming soon...
                 </p>
               </div>
             </div>
@@ -518,15 +525,15 @@ const CompanyContent = () => {
             <h4 className="text-xs font-normal">About Code One LLC </h4>
           </Link>
         </div>
-        <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
+        {/* <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
           <h4 className="text-xs font-normal">Partners </h4>
-        </div>
+        </div> */}
         <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
           <h4 className="text-xs font-normal">Contact </h4>
         </div>
-        <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
+        {/* <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
           <h4 className="text-xs font-normal">Career </h4>
-        </div>
+        </div> */}
       </div>
     </div>
   );
