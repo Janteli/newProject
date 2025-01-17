@@ -4,7 +4,7 @@ import { PiHandshakeThin } from "react-icons/pi";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { IoPerson } from "react-icons/io5";
 import { BsSuitcaseLgFill } from "react-icons/bs";
-
+import Stack from "../../public/img3.webp"
 const HomePageTwo = () => {
   return (
     // Content
@@ -38,7 +38,8 @@ const HomePageTwo = () => {
 
       <div className="w-full h-96 border rounded-md relative mt-4 z-10">
         <img
-          src="../src/assets/images/img3.webp"
+          src={Stack}
+          alt="stack"
           className="w-full h-full object-cover rounded-md"
         />
         <div className="absolute bottom-0 left-0 w-full h-48  bg-gradient-to-t from-yellow-300/80 via-yellow-400/60 to-transparent blur-3xl z-20"></div>

@@ -1,4 +1,6 @@
 import React from "react";
+import Img1 from "../../public/img1.jpg"
+import People from "../../public/people.jpg"
 
 const HomePageThree = () => {
   return (
@@ -97,7 +99,7 @@ const HomePageThree = () => {
               <div className="absolute inset-0 blur-3xl opacity-95 bg-gradient-to-r from-[#d6f719fb] to-blue-900 rounded-lg z-10"></div>
 
               <img
-                src="../src/assets/images/img1.jpg"
+                src={Img1}
                 alt="img1"
                 className="h-full inset-0 w-full object-contain z-20 "
               />
@@ -111,7 +113,7 @@ const HomePageThree = () => {
         <div className="col-span-1 max-h-[600px] w-full px-6 pt-2 rounded-md py-4">
           <div className="w-full h-full pt-4">
             <img
-              src="../src/assets/images/stck.jpg"
+              src={People}
               alt="person"
               className="rounded-md w-full h-full inset-0 object-cover object-right"
             />
