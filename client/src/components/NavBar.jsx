@@ -46,7 +46,7 @@ const NavBar = () => {
   };
   return (
     <nav
-      className={`fixed  top-0 left-0 w-full flex h-20 md:h-[80px] justify-between md:px-2 md:py-6  px-2 py-4 z-50 ${
+      className={`fixed   top-0 left-0 w-full flex h-20 md:h-[80px] justify-between md:px-2  md:py-6  px-2 py-4 z-50 ${
         isScrolled === true ? "bg-white" : "bg-[#282828]"
       }`}
     >
@@ -76,7 +76,7 @@ const NavBar = () => {
       </div>
       {/* TABS */}
       <div
-        className={`hidden md:flex  items-center justify-center px-2 py-3 z-10 ${
+        className={`hidden sm:hidden md:flex  items-center justify-center px-2 py-3 z-10 ${
           isScrolled ? "bg-white text-[#282828]" : "bg-[#282828] text-white"
         }`}
       >
@@ -121,16 +121,17 @@ const NavBar = () => {
           >
             <Link to="/login">Login</Link>
           </button> */}
-
-          <button
-            className={`px-3 mt-0 border shadow-md font-normal text-xs rounded-md ${
-              isScrolled
-                ? "bg-[#282828] text-[#fff]"
-                : "bg-[#fff] text-[#282828] border rounded-md  "
-            }`}
-          >
-            <Link to="/book-a-demo">Book a meeting</Link>
-          </button>
+          <Link to="/book-a-demo">
+            <button
+              className={`px-3 py-2  border shadow-md font-normal text-xs rounded-md ${
+                isScrolled
+                  ? "bg-[#282828] text-[#fff]"
+                  : "bg-[#fff] text-[#282828] border rounded-md  "
+              }`}
+            >
+              Book a meeting
+            </button>
+          </Link>
         </div>
         {/* hamburger */}
         <div className="md:hidden -mt-1" onClick={handleMenu}>
