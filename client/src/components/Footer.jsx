@@ -5,7 +5,7 @@ const Footer = () => {
     <div className="mt-16 ">
       {/* lower part */}
 
-      <div className="bg-[url('https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/64a562b9492999ffae211108_grain_less.png')] md:h-fit h-[400px] grid md:grid-cols-12 grid-rows-2 md:gap-20  relative md:mt-24 px-2 md:pt-8">
+      <div className="bg-[url('https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/64a562b9492999ffae211108_grain_less.png')] md:h-fit h-[400px] grid md:grid-cols-12 grid-rows-2 md:gap-20  relative md:mt-24 px-2 md:pt-8 object-contain">
         {/* Left Section */}
         <div className="md:col-span-6 md:pl-24 md:py-12 row-span-1 mt-4">
           <h1 className="leading-tight font-extrabold text-gray-400 text-left -mb-6">

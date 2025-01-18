@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const HomePageOne = () => {
   return (
     <>
-      <div className="bg-gray-100 ">
+      <div className="bg-gray-100 md:mx-5">
         <div className="md:mt-3 mb-0">
           <div className="flex flex-row justify-center md:pt-14 pt-8 px-4 space-x-1">
             <h1

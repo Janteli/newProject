@@ -8,11 +8,11 @@ import Stack from "../../public/img3.webp"
 const HomePageTwo = () => {
   return (
     // Content
-    <div className="bg-white ">
+    <div className="bg-white mx-4 md:mx-0 ">
       <div className="md:mt-3 md:mb-8">
         <div className="flex flex-row justify-center">
           <h1
-            className="font-normal bg-custom-gradient md:text-3xl  py-4 text-center leading-tight space-x-1 whitespace-nowrap"
+            className="font-normal bg-custom-gradient md:text-3xl   py-4 text-center leading-tight space-x-1 whitespace-nowrap"
             style={{
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",

@@ -30,7 +30,7 @@ const HomePageFour = () => {
   ];
 
   return (
-    <div className="md:mt-20 mt-12">
+    <div className="md:mt-20 mt-12 md:mx-0 mx-4">
       <div className=" ">
         <h1 className="text-center text-3xl font-normal px-3 mb-2">
           How
