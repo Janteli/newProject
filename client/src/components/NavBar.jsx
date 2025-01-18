@@ -46,11 +46,11 @@ const NavBar = () => {
   };
   return (
     <nav
-      className={`fixed  top-0 left-0 w-full flex h-20 md:h-24 justify-between md:px-20 md:py-6  px-2 py-3 z-50 ${
+      className={`fixed  top-0 left-0 w-full flex h-20 md:h-[80px] justify-between md:px-2 md:py-6  px-2 py-4 z-50 ${
         isScrolled === true ? "bg-white" : "bg-[#282828]"
       }`}
     >
-      <div className="w-1/3 h-7 md:h-10 flex justify-start   ">
+      <div className="w-1/3 h-7 md:h-10 flex justify-start items-center md:pl-12 pt-6 md:pt-0 ">
         <Link to="/">
           <div className="h-16 -mt-2">
             {/* <svg
@@ -66,61 +66,52 @@ const NavBar = () => {
               <rect x="75.2" y="18.8" width="18.8" height="18.8"></rect>
               <rect x="94" y="37.6" width="18.8" height="105.2"></rect>
             </svg> */}
-            <img src="../logo.png" alt="logo" className="h-full w-full inset-0 object-contain"/>
+            <img
+              src="../logo.png"
+              alt="logo"
+              className="h-full w-full inset-0 object-contain"
+            />
           </div>
         </Link>
       </div>
       {/* TABS */}
-      <div className="w-1/3 hidden md:block">
-        <div
-          className={`flex  justify-center  px-2 py-3 -mt-8 z-10 ${
-            isScrolled ? "bg-white text-[#282828]" : "bg-[#282828] text-white"
-          }`}
+      <div
+        className={`hidden md:flex  items-center justify-center px-2 py-3 z-10 ${
+          isScrolled ? "bg-white text-[#282828]" : "bg-[#282828] text-white"
+        }`}
+      >
+        <FlyoutLink
+          href="#"
+          FlyoutContent={ServicesContent}
+          isScrolled={isScrolled}
         >
-          {/* <FlyoutLink
-            href="#"
-            FlyoutContent={ProductContent}
-            className=""
-            isScrolled={isScrolled}
-          >
-            <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-600">
-              Products
-            </p>
-          </FlyoutLink> */}
-          <FlyoutLink
-            href="#"
-            FlyoutContent={ServicesContent}
-            isScrolled={isScrolled}
-          >
-            <p className="text-xs px-4 py-3 mr-4 rounded-sm hover:bg-gray-200">
-              Services
-            </p>
-          </FlyoutLink>
-          <FlyoutLink
-            href="#"
-            FlyoutContent={CompanyContent}
-            isScrolled={isScrolled}
-          >
-            <p className="text-xs px-4 py-3 mr-4 rounded-sm hover:bg-gray-200">
-              Company
-            </p>
-          </FlyoutLink>
-          <FlyoutLink
-            href="#"
-            FlyoutContent={ResourcesContent}
-            isScrolled={isScrolled}
-          >
-            <p className="text-xs px-4 py-3 mr-4 rounded-sm hover:bg-gray-200">
-              Resources
-            </p>
-          </FlyoutLink>
-        </div>
+          <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-100">
+            Services
+          </p>
+        </FlyoutLink>
+        <FlyoutLink
+          href="#"
+          FlyoutContent={CompanyContent}
+          isScrolled={isScrolled}
+        >
+          <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-100">
+            Company
+          </p>
+        </FlyoutLink>
+        <FlyoutLink
+          href="#"
+          FlyoutContent={ResourcesContent}
+          isScrolled={isScrolled}
+        >
+          <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-100">
+            Resources
+          </p>
+        </FlyoutLink>
       </div>
 
       {/* BUTTONS */}
-      <div className="md:mt-0 md:pr-5 w-1/3 flex justify-end">
+      <div className="md:mt-0 md:pr-12 w-1/3 flex justify-end">
         <div className="   hidden md:flex">
-          
           {/* <button
             className={`px-3 py-0   text-xs ${
               isScrolled
@@ -154,7 +145,11 @@ const NavBar = () => {
       >
         <div className="w-full h-7 flex justify-between mb-2">
           <div className="w-16 h-16 z-20">
-            <img src="../logo.png" alt="logo" className="h-full w-full inset-0 object-contain"/>
+            <img
+              src="../logo.png"
+              alt="logo"
+              className="h-full w-full inset-0 object-contain"
+            />
           </div>
           {/* Hamburger */}
           <div className="nav-toggle" onClick={handleMenu}>
@@ -178,25 +173,25 @@ const NavBar = () => {
                     className="pl-4 space-y-2 transition-all duration-300"
                     onClick={() => setMenuOpen(false)}
                   >
-                    <Link to='/codeone-account'>
-                    <div className="px-2 py-3 hover:bg-gray-200 rounded-md">
-                      <div className="flex gap-10 px-1">
-                        <div className="h-10 w-10 ">
-                          <img
-                            src="https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/6499418e8e5e9efd16b78ffc_Stack-p-500.webp"
-                            alt="stack"
-                          />
-                        </div>
-                        <div>
-                          <h4 className="text-xs font-normal">
-                            Code One LLC Account
-                          </h4>
-                          <p className="text-xs font-normal text-gray-500">
-                            Real-Time Payments
-                          </p>
+                    <Link to="/codeone-account">
+                      <div className="px-2 py-3 hover:bg-gray-200 rounded-md">
+                        <div className="flex gap-10 px-1">
+                          <div className="h-10 w-10 ">
+                            <img
+                              src="https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/6499418e8e5e9efd16b78ffc_Stack-p-500.webp"
+                              alt="stack"
+                            />
+                          </div>
+                          <div>
+                            <h4 className="text-xs font-normal">
+                              Code One LLC Account
+                            </h4>
+                            <p className="text-xs font-normal text-gray-500">
+                              Real-Time Payments
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
                     </Link>
 
                     <div className="px-2 py-3 hover:bg-gray-200 rounded-md">
@@ -340,15 +335,17 @@ const NavBar = () => {
             </ul>
             <div className=" space-x-2 flex">
               <Link to="/login">
-                <button className="px-3 py-3 border border-black rounded-md hover:bg-gray-100 text-xs "
-                onClick={() => setMenuOpen(false)}
+                <button
+                  className="px-3 py-3 border border-black rounded-md hover:bg-gray-100 text-xs "
+                  onClick={() => setMenuOpen(false)}
                 >
                   Login
                 </button>
               </Link>
               <Link to="/book-a-demo">
-                <button className="px-3 py-3 font-normal bg-[#282828] text-white rounded-md hover:bg-gray-800 text-xs"
-                onClick={() => setMenuOpen(false)}
+                <button
+                  className="px-3 py-3 font-normal bg-[#282828] text-white rounded-md hover:bg-gray-800 text-xs"
+                  onClick={() => setMenuOpen(false)}
                 >
                   Book a demo
                 </button>
@@ -416,22 +413,22 @@ const ProductContent = () => {
     <div className="h-24 w-96 bg-white px-2 py-3 ">
       <div className="flex flex-col gap-6 shadow-md px-3 py-2 bg-white">
         <Link to="codeone-account">
-        <div className="px-2 py-3 hover:bg-gray-200 rounded-md">
-          <div className="flex gap-10 px-1">
-            <div className="h-10 w-10 ">
-              <img
-                src="https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/6499418e8e5e9efd16b78ffc_Stack-p-500.webp"
-                alt="stack"
-              />
-            </div>
-            <div>
-              <h4 className="text-xs font-normal">Code One LLC Account</h4>
-              <p className="text-xs font-normal text-gray-500">
-                Payments & Collection
-              </p>
+          <div className="px-2 py-3 hover:bg-gray-200 rounded-md">
+            <div className="flex gap-10 px-1">
+              <div className="h-10 w-10 ">
+                <img
+                  src="https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/6499418e8e5e9efd16b78ffc_Stack-p-500.webp"
+                  alt="stack"
+                />
+              </div>
+              <div>
+                <h4 className="text-xs font-normal">Code One LLC Account</h4>
+                <p className="text-xs font-normal text-gray-500">
+                  Payments & Collection
+                </p>
+              </div>
             </div>
           </div>
-        </div>
         </Link>
 
         <div className="px-2 py-3 hover:bg-gray-200 rounded-md">
@@ -477,28 +474,26 @@ const ProductContent = () => {
 const ServicesContent = () => {
   return (
     <div className="h-fit w-96 bg-white py-3 flex flex-col gap-6 shadow-md px-3">
-      
-        <Link to="/service">
-          <div className="px-2 py-3 hover:bg-gray-200 rounded-md pointer">
-            <div className="flex gap-10 px-1">
-              <div className="h-10 w-10 ">
-                <img
-                  src="https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/6499418e8e5e9efd16b78ffc_Stack-p-500.webp"
-                  alt="stack"
-                />
-              </div>
-              <div className="flex gap-2 mt-2">
-                <h4 className=" text-xs font-normal text-[#282828] ">
-                  Create an account
-                </h4>
-                <p className="text-xs font-normal text-gray-500">
-                  Comming soon...
-                </p>
-              </div>
+      <Link to="/service">
+        <div className="px-2 py-3 hover:bg-gray-200 rounded-md pointer">
+          <div className="flex gap-10 px-1">
+            <div className="h-10 w-10 ">
+              <img
+                src="https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/6499418e8e5e9efd16b78ffc_Stack-p-500.webp"
+                alt="stack"
+              />
+            </div>
+            <div className="flex gap-2 mt-2">
+              <h4 className=" text-xs font-normal text-[#282828] ">
+                Create an account
+              </h4>
+              <p className="text-xs font-normal text-gray-500">
+                Comming soon...
+              </p>
             </div>
           </div>
-        </Link>
-      
+        </div>
+      </Link>
     </div>
   );
 };
@@ -506,22 +501,20 @@ const ServicesContent = () => {
 const CompanyContent = () => {
   return (
     <div className="h-fit w-96 bg-white px-2 py-3 flex flex-col  gap-4 shadow-md">
-      
-        <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
-          <Link to="/about">
-            <h4 className="text-xs font-normal">About Code One LLC </h4>
-          </Link>
-        </div>
-        {/* <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
+      <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
+        <Link to="/about">
+          <h4 className="text-xs font-normal">About Code One LLC </h4>
+        </Link>
+      </div>
+      {/* <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
           <h4 className="text-xs font-normal">Partners </h4>
         </div> */}
-        <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
-          <h4 className="text-xs font-normal">Contact </h4>
-        </div>
-        {/* <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
+      <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
+        <h4 className="text-xs font-normal">Contact </h4>
+      </div>
+      {/* <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
           <h4 className="text-xs font-normal">Career </h4>
         </div> */}
-      
     </div>
   );
 };
@@ -529,16 +522,15 @@ const CompanyContent = () => {
 const ResourcesContent = () => {
   return (
     <div className="h-fit w-96 bg-white px-2 py-3 flex flex-col  gap-4 shadow-md">
-        <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
-          <h4 className="text-xs font-normal">News </h4>
-        </div>
-        <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
-          <h4 className="text-xs font-normal">Blogs </h4>
-        </div>
-        <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
-          <h4 className="text-xs font-normal">Advisor Directory </h4>
-        </div>
-    
+      <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
+        <h4 className="text-xs font-normal">News </h4>
+      </div>
+      <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
+        <h4 className="text-xs font-normal">Blogs </h4>
+      </div>
+      <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
+        <h4 className="text-xs font-normal">Advisor Directory </h4>
+      </div>
     </div>
   );
 };
