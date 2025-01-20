@@ -297,7 +297,9 @@ const NavBar = () => {
                       <h4 className="text-xs font-normal">Partners </h4>
                     </div>
                     <div className="flex px-2 py-6 hover:bg-gray-200 rounded-md">
-                      <h4 className="text-xs font-normal">Contact </h4>
+                      <Link to="/contact">
+                        <h4 className="text-xs font-normal">Contact </h4>
+                      </Link>
                     </div>
                     <div className="flex px-2 py-6 hover:bg-gray-200 rounded-md">
                       <h4 className="text-xs font-normal">Career </h4>
@@ -511,7 +513,9 @@ const CompanyContent = () => {
           <h4 className="text-xs font-normal">Partners </h4>
         </div> */}
       <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
-        <h4 className="text-xs font-normal">Contact </h4>
+        <Link to="/contact">
+          <h4 className="text-xs font-normal">Contact </h4>
+        </Link>
       </div>
       {/* <div className="flex px-2 py-3 hover:bg-gray-200 rounded-md">
           <h4 className="text-xs font-normal">Career </h4>

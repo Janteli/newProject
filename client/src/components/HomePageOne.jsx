@@ -26,9 +26,7 @@ const HomePageOne = () => {
             <p className="font-normal text-sm text-gray-500 tracking-tighter mb-4 max-w-3xl md:px-8">
               At Code One LLC, we specialize in guiding businesses through the
               intricate regulatory landscape of Money Transmitter Licensing
-              (MTL)
-              <br />
-              and the rapidly evolving compliance requirements for
+              (MTL)and the rapidly evolving compliance requirements for
               cryptocurrency and blockchain-based businesses in the United
               States.
             </p>
