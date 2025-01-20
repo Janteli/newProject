@@ -1,10 +1,10 @@
 import React from "react";
-import Cart from "../components/Cart";
+import Table from "../../public/table.jpg"
 
 const About = () => {
   return (
     <>
-      <section className="h-fit mt-36 w-full md:px-12">
+      <section className="h-fit md:mt-36 w-full md:px-12">
         <div>
           <h1 className="text-center text-3xl">Probably nothing</h1>
           <p className="text-center text-gray-400 font-light leading-tight mt-6 whitespace-pre">
@@ -17,8 +17,8 @@ const About = () => {
             with peace of mind. Finally.
           </p>
         </div>
-        <div className="flex flex-col md:flex-row gap-2 px-2 mt-20">
-          <div className=" bg-gray-50 md:w-1/2 md:py-16 md:order-1 order-1 ">
+        <div className="flex flex-col md:flex-row gap-2 px-2 md:mt-20">
+          <div className=" bg-gray-50 w-full md:w-1/2 md:py-16 md:order-1 order-1 ">
             <h1 className="text-xs text-slate-800 text-center bg-slate-100 px-2 py-2 rounded-sm mb-6 w-40 mt-24">
               Who are we
             </h1>
@@ -46,9 +46,9 @@ const About = () => {
             </p>
           </div>
 
-          <div className="bg-gray-50 md:w-1/2 md:py-16 md:order-2 order-2 ">
+          <div className="bg-gray-50 w-full md:w-1/2 md:py-16 md:order-2 order-2 ">
             <img
-              src="https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/64abb44d752f2e9019fc3a9a_about-januar-p-1080.webp"
+              src={Table}
               className="h-[520px] object-cover w-full "
             />
           </div>
@@ -56,7 +56,7 @@ const About = () => {
 
         {/* why to choose? */}
 
-        <div className="flex flex-col md:flex-row gap-2 md:mt-20  px-2 md:mb-20">
+        <div className="flex flex-col md:flex-row gap-2 mt-10 md:mt-20  px-2 md:mb-20">
           <div className="  bg-gray-50 md:w-1/2 md:pr-8 md:pl-32 md:py-10 md:order-2 order-1">
             <h1 className="text-xs text-slate-800 text-center bg-slate-100 md:mt-10 px-2 py-2 rounded-sm mb-6 w-40">
               Why Choose Code One LLC?
@@ -84,7 +84,7 @@ const About = () => {
               time-to-market delays. ________________________________________
             </p>
           </div>
-          <div className=" w-1/2  bg-slate-500  md:order-1 order-2 ">
+          <div className="w-full md:w-1/2  bg-slate-500  md:order-1 order-2 ">
             <img
               src="https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/64abb44d752f2e9019fc3a9a_about-januar-p-1080.webp"
               className="h-[520px] object-cover w-full "

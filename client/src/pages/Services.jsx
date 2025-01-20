@@ -1,97 +1,77 @@
 import React from "react";
-import ServiceOne from "../components/ServiceOne";
-import ServiceTwo from "../components/ServiceTwo";
-import ServiceThree from "../components/ServiceThree";
-import ServiceFour from "../components/ServiceFour";
-import ServiceFive from "../components/ServiceFive";
-import ServiceSix from "../components/ServiceSix";
+import ServiceCart from "../components/ServiceCart";
 
 const Services = () => {
+
+  const services = [
+    {
+      icon : "💡",
+      head: "MTL Application Management",
+      listOne: "Comprehensive preparation and submission of Money Transmitter License applications for all 50 states.",
+      listTwo: "Assistance with meeting state-specific financial requirements, such as net worth thresholds and surety bonds.",
+      listThree:"Guidance on creating robust compliance policies, including AML, KYC, and Permissible Investments."
+    },
+    {
+      icon : "⚙️",
+      head: "Regulatory Advisory and Compliance Support",
+      listOne: "In-depth analysis of state-by-state MTL requirements tailored to your business model.",
+      listTwo: "Development of compliance frameworks aligned with federal, state, and cryptocurrency regulations.",
+      listThree:"Guidance on creating robust compliance policies, including AML, KYC, and Permissible Investments."
+    },
+    {
+      icon : "👩‍💼",
+      head: "Crypto and Blockchain Compliance Solutions",
+      listOne: "Advisory on like-for-like cryptocurrency permissible investments (e.g., ETH for ETH, BTC for BTC) to meet state-specific requirements.",
+      listTwo: "Blockchain compliance assessments, including wallet audits, custody protocols, and transaction reporting.",
+    },
+    {
+      icon : "🏆",
+      head: "Blockchain Infrastructure Consulting",
+      listOne: "Integration of blockchain technology into operations for increased transparency, security, and efficiency.",
+      listTwo: "Consultation on smart contracts, decentralized applications (DApps), tokenized payment systems, and blockchain analytics.",
+      listThree:"Regulatory readiness for businesses adopting or expanding blockchain-based solutions."
+    },
+    {
+      icon : "🌍",
+      head: "Licensing Expansion and Strategic Planning",
+      listOne: "Support for multi-state licensing strategies, including phased application rollouts.",
+      listTwo: "Acquisition consulting for businesses seeking to expand by purchasing local MSBs with existing licenses.",
+      listThree:"Strategic partnerships to accelerate licensing timelines and market entry for fintech and blockchain businesses."
+    },
+    {
+      icon : "🔧",
+      head: "Assistance in securing state-specific surety bonds.",
+      listOne: "Strategic planning to meet permissible investment requirements for both fiat and cryptocurrency assets.",
+      listThree:"Guidance on establishing and maintaining financial reserves to support operational stability."
+    },
+  ]
+
   return (
-    <>
-      <div className="  mt-40 shadow-md rounded-sm mb-10">
-        <p className="text-sm font-light text-gray-600 text-center">
-          We offer comprehensive services to help businesses navigate the
-          complexities of Money Transmitter License (MTL) <br />
-          applications, regulatory compliance, blockchain integration, and
-          licensing expansion. From managing state-specific <br />
-          requirements to providing tailored crypto compliance strategies and
-          financial solutions, our expertise ensures seamless operations,
-          <br /> regulatory readiness, and strategic growth for fintech and
-          blockchain businesses.
+    <div className="py-16 px-8 text-white mt-24 md:bg-diagonal-blue-yellow bg-gray-300">
+      <div className="container mx-auto">
+        {/* Heading */}
+        <p className="text-xs text-gray-100 text-center mb-4">
+          We offer comprehensive services to help businesses <br/>
+          navigate the complexities of Money Transmitter License (MTL)<br/>
+          applications, regulatory compliance, blockchain integration, and licensing<br/>
+          expansion. From managing state-specific requirements to providing<br/>
+          tailored crypto compliance strategies and financial solutions, our<br/>
+          expertise ensures seamless operations, regulatory readiness, and<br/>
+          strategic growth for fintech and blockchain businesses.
         </p>
-        <h3 className="font-normal text-3xl text-center"> Services...</h3>
+        <h2 className="text-3xl font-normal text-center mb-12">
+          Services
+        </h2>
 
-        <div className="flex flex-col items-center">
-          <div className="mb-3">
-            <button
-              onClick={() =>
-                document
-                  .getElementById("service-one")
-                  .scrollIntoView({ behavior: "smooth" })
-              }
-              className="border border-green-700 rounded-sm px-2 py-2 hover:scale-105 cursor-pointer text-xs text-green-600"
-            >
-              MTL Application Management
-            </button>
-          </div>
-          <div className="flex gap-3 mb-3">
-            <button  onClick={() => document.getElementById("service-two").scrollIntoView({ behavior: "smooth" })}
-    className="border border-yellow-600 rounded-sm px-2 py-2 hover:scale-105 cursor-pointer text-xs text-yellow-700">
-              Regulatory Advisory and Compliance Support
-            </button>
-            <button  onClick={() => document.getElementById("service-three").scrollIntoView({ behavior: "smooth" })}
-    className="border border-pink-700 rounded-sm px-2 py-2 hover:scale-105 cursor-pointer text-xs text-pink-600">
-              {" "}
-              Crypto and Blockchain Compliance Solutions
-            </button>
-          </div>
-          <div className="flex gap-3 mb-3">
-            <button  onClick={() => document.getElementById("service-four").scrollIntoView({ behavior: "smooth" })}
-    className="border border-red-500 rounded-sm px-2 py-2 hover:scale-105 cursor-pointer text-xs text-red-400">
-              Blockchain Infrastructure Consulting
-            </button>
-            <button  onClick={() => document.getElementById("service-five").scrollIntoView({ behavior: "smooth" })}
-    className="border border-yellow-400 rounded-sm px-2 py-2 hover:scale-105 cursor-pointer text-xs text-yellow-300">
-              Licensing Expansion and Strategic Planning
-            </button>
-            <button  onClick={() => document.getElementById("service-six").scrollIntoView({ behavior: "smooth" })}
-    className="border border-pink-400 rounded-sm px-2 py-2 hover:scale-105 cursor-pointer text-xs text-pink-300">
-              Surety Bond and Financial Requirement Solutions
-            </button>
-          </div>
+        {/* Strengths Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Card 1 */}
+          {services.map((service,i)=>(<ServiceCart key={i} service={service}/>))}
+
+          
         </div>
       </div>
-
-      <div className="bg-[url('https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/649977b69a5cbbcf87cd7d89_hero-januar-flow-p-800.webp')] bg-cover bg-center">
-        <div id="service-one">
-          <ServiceOne />
-        </div>
-
-        <div id="service-two">
-          <ServiceTwo />
-        </div>
-        <div className="w-full h-64 mt-4 px-8 rounded-md mb-8">
-          <img
-            src="https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/4087184/cover_image/regular_1708x683/Untitled-c7f4c86ddb44556b00a31a37e4219c3d.png"
-            alt="Image"
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <div id="service-three">
-          <ServiceThree />
-        </div>
-        <div id="service-four">
-          <ServiceFour />
-        </div>
-        <div id="service-five">
-          <ServiceFive />
-        </div>
-        <div id="service-six">
-          <ServiceSix />
-        </div>
-      </div>
-    </>
+    </div>
   );
 };
 

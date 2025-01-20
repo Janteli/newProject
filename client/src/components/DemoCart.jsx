@@ -1,11 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 const DemoCart = ({ selectedTime, selectedDate }) => {
   // console.log(selectedDate, selectedTime)
+
+  const [successPopUp, setSuccessPopUp] = useState(false)
+  const form = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    // alert("Is it working?")
+    console.log("inside", selectedDate);
+
+    emailjs
+      .sendForm(
+        "service_sz9g5lc",
+        "template_gcd5k4v",
+        form.current,
+        "vMGkqDDUbESXXDONr"
+      )
+      .then(
+        (response) => {
+          console.log("Email sent successfully:", response);
+          setSuccessPopUp(true)
+          // alert("Email sent successfully!");
+          setTimeout(()=>{
+            setSuccessPopUp(false)
+          },3000)
+        },
+        (error) => {
+          console.error("Failed to send email:", error);
+          alert("Failed to send email. Please check the console for errors.");
+        }
+      );
+
+    e.target.reset();
+  };
+
   return (
     <>
+     {/* Success Popup */}
+     {successPopUp && (
+        <div className="fixed top-30 left-10 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
+          Email sent successfully!
+        </div>
+      )}
       {/* intro */}
       <div className="-mt-20 mb-16">
         <h3 className="text-3xl font-normal text-center">
@@ -35,7 +77,12 @@ const DemoCart = ({ selectedTime, selectedDate }) => {
           </div>
         </div>
 
-        <form className="flex mt-3 w-full">
+        <form
+          className="flex mt-3 w-full"
+          action=""
+          onSubmit={sendEmail}
+          ref={form}
+        >
           <div className="flex flex-col w-full gap-4">
             <div className="flex gap-2 mb-4">
               <div className="flex flex-col gap-2  md:flex-row w-full">
@@ -48,34 +95,46 @@ const DemoCart = ({ selectedTime, selectedDate }) => {
                   </label>
                   <input
                     type="text"
+                    name="firstname"
                     className="border outline-none border-gray-400 rounded-sm px-2 py-2"
                   />
                 </div>
 
                 <div className="flex flex-col md:w-1/2 w-full">
                   <label
-                    for="firstname"
+                    for="lastname"
                     className="items-start text-[#33475B] text-xs mb-1"
                   >
                     Last name *
                   </label>
                   <input
                     type="text"
+                    name="lastname"
                     className="border outline-none border-gray-400 rounded-sm px-2 py-2"
                   />
                 </div>
+
+                {/* Hidden input fields for selectedDate and selectedTime */}
+                <input
+                  type="hidden"
+                  name="selected_date"
+                  value={selectedDate.toDateString()}
+                />
+                <input
+                  type="hidden"
+                  name="selected_time"
+                  value={selectedTime}
+                />
               </div>
             </div>
 
             <div className="flex flex-col w-full">
-              <label
-                for="firstname"
-                className="items-start text-[#33475B] text-xs"
-              >
+              <label for="email" className="items-start text-[#33475B] text-xs">
                 Your email address *
               </label>
               <input
                 type="text"
+                name="email"
                 className="border outline-none border-gray-400 rounded-sm px-2 py-2"
               />
             </div>
@@ -87,7 +146,9 @@ const DemoCart = ({ selectedTime, selectedDate }) => {
               </div>
 
               <div className="flex items-center justify-center border border-gray-400 px-4 py-2 rounded-sm">
-                <button className="text-[#33475B] text-sm">Confirm</button>
+                <button className="text-[#33475B] text-sm" type="submit">
+                  Confirm
+                </button>
               </div>
             </div>
           </div>

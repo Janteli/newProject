@@ -3,7 +3,7 @@ import React from 'react'
 const ServiceThree = () => {
   return (
     <section className="flex flex-row gap-20">
-      <div className="md:w-2/3 w-full flex md:gap-48 gap-0 pl-6">
+      <div className="md:w-2/3 w-full flex md:gap-48 gap-0 pl-1">
         <div className="px-2 py-14">
           <h1 className="text-sm font-normal text-gray-700">
           3.Crypto and Blockchain Compliance Solutions
