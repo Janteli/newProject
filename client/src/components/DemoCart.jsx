@@ -7,13 +7,29 @@ import emailjs from "@emailjs/browser";
 const DemoCart = ({ selectedTime, selectedDate }) => {
   // console.log(selectedDate, selectedTime)
 
-  const [successPopUp, setSuccessPopUp] = useState(false)
+  const [successPopUp, setSuccessPopUp] = useState(false);
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  // const [selectedDate, setSelectedDate] = useState("")
+  // const [selectedTime, setSelectedTime] = useState("")
+
   const form = useRef();
+
   const sendEmail = (e) => {
     e.preventDefault();
 
     // alert("Is it working?")
-    console.log("inside", selectedDate);
+    const templateParams = {
+      from_name: "Code One LLC",
+      from_email: "codeone@gmail.com",
+      to_name: firstname,
+      to_email: email,
+      selected_date: selectedDate.toDateString(), // Adding the selectedDate
+      selected_time: selectedTime, // Adding the selectedTime
+    };
+
+    console.log(firstname, lastname, selectedDate, selectedTime, email);
 
     emailjs
       .sendForm(
@@ -25,11 +41,14 @@ const DemoCart = ({ selectedTime, selectedDate }) => {
       .then(
         (response) => {
           console.log("Email sent successfully:", response);
-          setSuccessPopUp(true)
+          setFirstname("");
+          setLastname("");
+          setEmail("");
+          setSuccessPopUp(true);
           // alert("Email sent successfully!");
-          setTimeout(()=>{
-            setSuccessPopUp(false)
-          },3000)
+          setTimeout(() => {
+            setSuccessPopUp(false);
+          }, 3000);
         },
         (error) => {
           console.error("Failed to send email:", error);
@@ -42,8 +61,8 @@ const DemoCart = ({ selectedTime, selectedDate }) => {
 
   return (
     <>
-     {/* Success Popup */}
-     {successPopUp && (
+      {/* Success Popup */}
+      {successPopUp && (
         <div className="fixed top-30 left-10 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
           Email sent successfully!
         </div>
@@ -77,18 +96,13 @@ const DemoCart = ({ selectedTime, selectedDate }) => {
           </div>
         </div>
 
-        <form
-          className="flex mt-3 w-full"
-          action=""
-          onSubmit={sendEmail}
-          ref={form}
-        >
+        <form className="flex mt-3 w-full" onSubmit={sendEmail} ref={form}>
           <div className="flex flex-col w-full gap-4">
             <div className="flex gap-2 mb-4">
-              <div className="flex flex-col gap-2  md:flex-row w-full">
+              <div className="flex flex-col gap-2 md:flex-row w-full">
                 <div className="flex flex-col md:w-1/2 w-full mb-2">
                   <label
-                    for="firstname"
+                    htmlFor="firstname"
                     className="items-start text-[#33475B] text-xs mb-1"
                   >
                     First name *
@@ -96,13 +110,15 @@ const DemoCart = ({ selectedTime, selectedDate }) => {
                   <input
                     type="text"
                     name="firstname"
+                    value={firstname}
+                    onChange={(e) => setFirstname(e.target.value)}
                     className="border outline-none border-gray-400 rounded-sm px-2 py-2"
                   />
                 </div>
 
                 <div className="flex flex-col md:w-1/2 w-full">
                   <label
-                    for="lastname"
+                    htmlFor="lastname"
                     className="items-start text-[#33475B] text-xs mb-1"
                   >
                     Last name *
@@ -110,34 +126,37 @@ const DemoCart = ({ selectedTime, selectedDate }) => {
                   <input
                     type="text"
                     name="lastname"
+                    value={lastname}
+                    onChange={(e) => setLastname(e.target.value)}
                     className="border outline-none border-gray-400 rounded-sm px-2 py-2"
                   />
                 </div>
-
-                {/* Hidden input fields for selectedDate and selectedTime */}
-                <input
-                  type="hidden"
-                  name="selected_date"
-                  value={selectedDate.toDateString()}
-                />
-                <input
-                  type="hidden"
-                  name="selected_time"
-                  value={selectedTime}
-                />
               </div>
             </div>
 
             <div className="flex flex-col w-full">
-              <label for="email" className="items-start text-[#33475B] text-xs">
+              <label
+                htmlFor="email"
+                className="items-start text-[#33475B] text-xs"
+              >
                 Your email address *
               </label>
               <input
-                type="text"
+                type="email"
                 name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="border outline-none border-gray-400 rounded-sm px-2 py-2"
               />
             </div>
+
+            {/* Hidden input fields for selectedDate and selectedTime */}
+            <input
+              type="hidden"
+              name="selected_date"
+              value={selectedDate.toDateString()}
+            />
+            <input type="hidden" name="selected_time" value={selectedTime} />
 
             <div className="flex justify-between mt-4">
               <div className="flex items-center justify-center border border-gray-400 px-4 py-2 rounded-sm">
