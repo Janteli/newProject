@@ -2,10 +2,10 @@ import React from "react";
 
 const ServiceOne = () => {
   return (
-    <section className="flex flex-row gap-20">
-      <div className="md:w-2/3 w-full flex md:gap-48 gap-8 pl-6">
-        <div className="pl-3 pr-11 py-14">
-          <h1 className="text-sm font-normal text-gray-700">
+    <section className=" flex flex-row gap-20">
+      <div className="md:w-2/3 w-full flex md:gap-48 gap-2 md:pl-1">
+        <div className="md:pl-2 md:pr-11 py-14">
+          <h1 className="text-xs font-normal text-gray-700">
             1.MTL Application Management
           </h1>
         </div>
