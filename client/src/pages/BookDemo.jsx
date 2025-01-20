@@ -384,7 +384,7 @@ const BookDemo = () => {
 
       {/* Display DemoCart */}
       <div className={`mt-44 ${selectedTime === null ? "hidden" : ""}`}>
-        <DemoCart selectedDate={selectedDate} selectedTime={selectedTime} />
+        <DemoCart selectedDate={selectedDate} selectedTime={selectedTime} setSelectedTime={setSelectedTime}/>
       </div>
     </>
   );
