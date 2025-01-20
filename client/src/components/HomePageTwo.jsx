@@ -28,12 +28,7 @@ const HomePageTwo = () => {
           </h1>
         </div>
 
-        <div className="flex flex-row justify-center text-center mt-2">
-          <p className=" text-sm text-gray-500">
-            Enjoy seamless payments and conduct operational
-            <br /> transactions with an IBAN account fit for purpose.
-          </p>
-        </div>
+        
       </div>
 
       <div className="w-full h-96 border rounded-md relative mt-4 z-10">
