@@ -63,12 +63,7 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
 
   return (
     <>
-      {/* Success Popup */}
-      {successPopUp && (
-        <div className="fixed top-30 left-10 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
-          Email sent successfully!
-        </div>
-      )}
+      
       {/* intro */}
       <div className={`mt- md:mb-16 ${!booked ?"hidden":""}`}>
         <h3 className="md:text-3xl text-2xl font-normal text-center mb-4">

@@ -1,6 +1,6 @@
 import React from "react";
 import Img1 from "../../public/img1.jpg"
-import Group from "../../public/pros.jpg"
+import Group from "../../public/new.jpg"
 
 const HomePageThree = () => {
   return (
@@ -109,8 +109,8 @@ const HomePageThree = () => {
       </div>
 
       {/* Info Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 bg-[url('https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/64a562b9492999ffae211108_grain_less.png')] bg-contain bg-center h-[510px] rounded-md md:mt-28 mt-12">
-        <div className="col-span-1 max-h-[600px] w-full px-4  rounded-md py-6 h-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 bg-[url('https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/64a562b9492999ffae211108_grain_less.png')] bg-contain bg-center  rounded-md md:mt-28 mt-12">
+        <div className="col-span-1 max-h-[1800px] w-full px-4  rounded-md py-6 h-full">
         
             <img
               src={Group}
