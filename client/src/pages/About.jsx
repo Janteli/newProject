@@ -4,7 +4,7 @@ import Table from "../../public/table.jpg"
 const About = () => {
   return (
     <>
-      <section className="h-fit md:mt-36 w-full md:px-12">
+      <section className="h-fit md:mt-36 w-full  md:px-12">
         <div>
           <h1 className="text-center text-3xl">Probably nothing</h1>
           <p className="text-center text-gray-400 font-light leading-tight mt-6 whitespace-pre">

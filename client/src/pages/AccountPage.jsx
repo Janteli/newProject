@@ -2,7 +2,7 @@ import React from "react";
 
 const AccountPage = () => {
   return (
-    <div className="mt-24">
+    <div className="mt-20">
       <div className="bg-[url('https://cdn.prod.website-files.com/646f3c0d1e3793b7397635eb/64a562b9492999ffae211108_grain_less.png')] py-12  pb-0">
         <h2 className="text-3xl text-gray-100 text-center mb-8 pb-0">
           Payment account? <br /> We got you
