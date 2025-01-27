@@ -35,7 +35,7 @@ const NavBar = () => {
     };
   }, [location.pathname]);
 
-  console.log(isScrolled);
+  // console.log(isScrolled);
 
   const handleMenu = () => {
     setMenuOpen(!menuOpen);
