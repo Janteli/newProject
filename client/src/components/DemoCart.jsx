@@ -1,36 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import { MdKeyboardArrowRight } from "react-icons/md";
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
-  // console.log(selectedDate, selectedTime)
-
   const [successPopUp, setSuccessPopUp] = useState(false);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [booked, setBooked] = useState(false);
-  // const [selectedDate, setSelectedDate] = useState("")
-  // const [selectedTime, setSelectedTime] = useState("")
 
   const form = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    // alert("Is it working?")
     const templateParams = {
       from_name: "Code One LLC",
       from_email: "codeone@gmail.com",
       to_name: firstname,
       to_email: email,
-      selected_date: selectedDate.toDateString(), // Adding the selectedDate
-      selected_time: selectedTime, // Adding the selectedTime
+      selected_date: selectedDate.toDateString(),
+      selected_time: selectedTime,
     };
-
-    console.log(firstname, lastname, selectedDate, selectedTime, email);
 
     emailjs
       .sendForm(
@@ -47,7 +39,6 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
           setEmail("");
           setSuccessPopUp(true);
           setBooked(true);
-          // alert("Email sent successfully!");
           setTimeout(() => {
             setSuccessPopUp(false);
           }, 3000);
@@ -61,25 +52,25 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
     e.target.reset();
   };
 
+  const isFormValid = firstname.trim() !== "" && lastname.trim() !== "" && email.trim() !== "";
+
   return (
     <>
-      
-      {/* intro */}
-      <div className={`mt- md:mb-16 ${!booked ?"hidden":""}`}>
+      {/* Intro */}
+      <div className={`mt- md:mb-16 ${!booked ? "hidden" : ""}`}>
         <h3 className="md:text-3xl text-2xl font-normal text-center mb-4">
           Book a{" "}
           <span className="bg-gradient-to-r from-[#C2E485] to-[#D7F825] px-2 py-1 rounded-md">
             demo
           </span>{" "}
-          with our Code One LLC <br/> expert
+          with our Code One LLC <br /> expert
         </h3>
         <p className="text-md text-gray-400 text-center">
           Other questions? <u>Contact sales</u>
         </p>
       </div>
 
-      {/* form section */}
-
+      {/* Form Section */}
       <div
         className={`mx-auto w-full md:w-[800px] shadow-md p-8 m-20 ${
           booked ? "hidden" : ""
@@ -92,10 +83,12 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
               <p className="text-md text-[#33475B]">
                 {selectedDate.toDateString()} {selectedTime}{" "}
               </p>
-              <p className="text-sm text-blue-400 hover:cursor-pointer"
-                onClick={()=> setSelectedTime(null)}
-
-              >Edit</p>
+              <p
+                className="text-sm text-blue-400 hover:cursor-pointer"
+                onClick={() => setSelectedTime(null)}
+              >
+                Edit
+              </p>
             </div>
           </div>
         </div>
@@ -165,11 +158,15 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
             <div className="flex justify-between mt-4">
               <div className="flex items-center justify-center border border-gray-400 px-4 py-2 rounded-sm">
                 <MdKeyboardArrowLeft />
-                <button className="text-[#33475B] text-sm px-4">Back</button>
+                <div onClick={() => setSelectedTime(null)} className="text-[#33475B] text-sm px-4 cursor-pointer">Back</div>
               </div>
 
-              <div className="flex items-center justify-center border border-gray-400 px-4 py-2 rounded-sm">
-                <button className="text-[#33475B] text-sm" type="submit">
+              <div className={`flex items-center justify-center border border-gray-400 px-4 py-2 rounded-sm ${!isFormValid ? "bg-gray-400" : "bg-blue-400"}`}>
+                <button
+                  className="text-[#33475B] text-sm"
+                  type="submit"
+                  disabled={!isFormValid} // Disable button if form is invalid
+                >
                   Confirm
                 </button>
               </div>
@@ -178,21 +175,31 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
         </form>
       </div>
 
-      <div className={`flex border-none shadow-md items-center justify-center md:w-[400px] mx-auto md:mt-10 py-10 ${!booked ? "hidden":""}`}>
+      {/* Success Section */}
+      <div
+        className={`flex border-none shadow-md items-center justify-center md:w-[400px] mx-auto md:mt-10 py-10 ${
+          !booked ? "hidden" : ""
+        }`}
+      >
         <div className="flex flex-col items-center justify-center w-full">
           <img
             src="//static.hsappstatic.net/ui-images/static-2.731/optimized/success.svg"
             className="w-56 h-40"
           />
-
           <div className="flex flex-col items-center justify-center px-8 mt-4">
-            <h1 className="text-center text-2xl font-light text-gray-600">Booking confirmed</h1>
+            <h1 className="text-center text-2xl font-light text-gray-600">
+              Booking confirmed
+            </h1>
             <p className="text-center text-sm text-gray-600 font-light">
               You're booked with Kristoffer Nystrøm. An invitation has been
               emailed to you.
             </p>
-            <h1 className="text-xl font-normal text-slate-600 mt-6">{selectedDate.toDateString()}</h1>
-            <h1 className="text-xl font-normal text-slate-600 ">{selectedTime}</h1>
+            <h1 className="text-xl font-normal text-slate-600 mt-6">
+              {selectedDate.toDateString()}
+            </h1>
+            <h1 className="text-xl font-normal text-slate-600 ">
+              {selectedTime}
+            </h1>
           </div>
         </div>
       </div>
