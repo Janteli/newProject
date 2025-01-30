@@ -4,16 +4,51 @@ import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
-  const [successPopUp, setSuccessPopUp] = useState(false);
+  // const [successPopUp, setSuccessPopUp] = useState(false);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [booked, setBooked] = useState(false);
+  const [meetLink, setMeetLink] = useState(""); // State for the Meet link
 
   const form = useRef();
 
-  const sendEmail = (e) => {
+  const generateMeetLink = async () => {
+    try {
+      
+      const newLink = `https://meet.google.com/new?code=${generateRandomCode(10)}`; 
+      setMeetLink(newLink);
+      return newLink; // Return the link for use in the email 
+    } catch (error) {
+      console.error("Error generating Meet link:", error);
+      return null; // Return null to indicate failure
+    }
+  };
+
+  // console.log(meetLink)
+
+  const generateRandomCode = (length) => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(randomIndex);
+    }
+    console.log(result)
+    return result;
+
+  };
+
+
+  const sendEmail = async (e) => {
     e.preventDefault();
+
+    const generatedLink = await generateMeetLink(); 
+
+    if (!generatedLink) {
+      alert("Failed to generate Meet link. Please try again.");
+      return; 
+    }
 
     const templateParams = {
       from_name: "Code One LLC",
@@ -22,6 +57,7 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
       to_email: email,
       selected_date: selectedDate.toDateString(),
       selected_time: selectedTime,
+      meet_link: generatedLink, // Include the Meet link in the email
     };
 
     emailjs
@@ -154,6 +190,8 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
               value={selectedDate.toDateString()}
             />
             <input type="hidden" name="selected_time" value={selectedTime} />
+            <input type="hidden" name="meetLink" value={meetLink} />
+
 
             <div className="flex justify-between mt-4">
               <div className="flex items-center justify-center border border-gray-400 px-4 py-2 rounded-sm">
