@@ -34,7 +34,7 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
       const randomIndex = Math.floor(Math.random() * characters.length);
       result += characters.charAt(randomIndex);
     }
-    console.log(result)
+    // console.log(result)
     return result;
 
   };
@@ -47,7 +47,7 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
 
     if (!generatedLink) {
       alert("Failed to generate Meet link. Please try again.");
-      return; 
+      return;
     }
 
     const templateParams = {
