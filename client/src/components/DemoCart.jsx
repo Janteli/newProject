@@ -18,6 +18,7 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
       
       const newLink = `https://meet.google.com/new?code=${generateRandomCode(10)}`; 
       setMeetLink(newLink);
+      console.log('worked meetLink?', meetLink)
       return newLink; // Return the link for use in the email 
     } catch (error) {
       console.error("Error generating Meet link:", error);
