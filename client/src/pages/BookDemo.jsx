@@ -251,7 +251,7 @@ const BookDemo = () => {
     setSelectedTime(time);
   };
 
-  console.log(selectedTime);
+  // console.log(selectedTime);
 
   const tileDisabled = ({ date, view }) => {
     const day = date.getDay();
@@ -304,7 +304,7 @@ const BookDemo = () => {
             </div>
             <div className="max-w-md mx-auto shadow-lg rounded-md mt-10">
               <h3 className="text-2xl font-sans mb-4 text-center text-white">
-                Meet with Kristoffer Nystrøm
+                Meet with CODE ONE LLC
               </h3>
               <StyledCalendar
                 onChange={setSelectedDate}

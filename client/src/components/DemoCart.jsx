@@ -4,7 +4,6 @@ import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
-  // const [successPopUp, setSuccessPopUp] = useState(false);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -74,11 +73,8 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
           setFirstname("");
           setLastname("");
           setEmail("");
-          setSuccessPopUp(true);
+          setMeetLink("")
           setBooked(true);
-          setTimeout(() => {
-            setSuccessPopUp(false);
-          }, 3000);
         },
         (error) => {
           console.error("Failed to send email:", error);
@@ -217,7 +213,7 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
       {/* Success Section */}
       <div
         className={`flex border-none shadow-md items-center justify-center md:w-[400px] mx-auto md:mt-10 py-10 ${
-          !booked ? "hidden" : ""
+          !booked ? "hidden" : "block"
         }`}
       >
         <div className="flex flex-col items-center justify-center w-full">
@@ -230,7 +226,7 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
               Booking confirmed
             </h1>
             <p className="text-center text-sm text-gray-600 font-light">
-              You're booked with Kristoffer Nystrøm. An invitation has been
+              You're booked with CODE ONE LLC. An invitation has been
               emailed to you.
             </p>
             <h1 className="text-xl font-normal text-slate-600 mt-6">
