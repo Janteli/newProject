@@ -85,7 +85,7 @@ const NavBar = () => {
           FlyoutContent={ServicesContent}
           isScrolled={isScrolled}
         >
-          <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-100">
+          <p className="text-md px-4 py-1 mr-4 text- rounded-sm hover:bg-gray-100">
             Services
           </p>
         </FlyoutLink>
@@ -94,7 +94,7 @@ const NavBar = () => {
           FlyoutContent={CompanyContent}
           isScrolled={isScrolled}
         >
-          <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-100">
+          <p className="text-md px-4 py-1 mr-4 rounded-sm hover:bg-gray-100">
             Company
           </p>
         </FlyoutLink>
@@ -103,7 +103,7 @@ const NavBar = () => {
           FlyoutContent={ResourcesContent}
           isScrolled={isScrolled}
         >
-          <p className="text-xs px-4 py-1 mr-4 rounded-sm hover:bg-gray-100">
+          <p className="text-md px-4 py-1 mr-4 rounded-sm hover:bg-gray-100">
             Resources
           </p>
         </FlyoutLink>
