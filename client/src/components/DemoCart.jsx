@@ -1,222 +1,194 @@
-import React, { useEffect, useState } from "react";
-import { MdKeyboardArrowLeft } from "react-icons/md";
-import { useRef } from "react";
-import emailjs from "@emailjs/browser";
+import React, { useState } from 'react';
+import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
+import emailjs from '@emailjs/browser';
+import axios from 'axios';
 
-const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '671715197242-b57naf9f38l1khu143ch6rn50fpv66t8.apps.googleusercontent.com';
+const SERVICE_ID = 'service_8ywcv5c';
+const TEMPLATE_ID = 'template_nnda24t';
+const USER_ID = 'qmfXAYWGqQ-CsVNab';
+
+const DemoCart = ({ selectedTime, selectedDate }) => {
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
   const [booked, setBooked] = useState(false);
-  const [meetLink, setMeetLink] = useState(""); // State for the Meet link
+  const [token, setToken] = useState(null);
+  const [errors, setErrors] = useState({});
 
-  const form = useRef();
+  // Use the useGoogleLogin hook with explicit clientId
+  const login = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      console.log('Token response:', tokenResponse);
+      setToken(tokenResponse.access_token); // Store the access token
+    },
+    onError: (error) => console.log('Login failed:', error),
+    scope: 'https://www.googleapis.com/auth/calendar.events',
+    flow: 'implicit', // Use implicit flow for access_token
+    clientId: GOOGLE_CLIENT_ID, // Explicitly pass clientId
+  });
 
-  const generateMeetLink = async () => {
-    try {
-      
-      const newLink = `https://meet.google.com/new?code=${generateRandomCode(10)}`; 
-      setMeetLink(newLink);
-      console.log('worked meetLink?', meetLink)
-      return newLink; // Return the link for use in the email 
-    } catch (error) {
-      console.error("Error generating Meet link:", error);
-      return null; // Return null to indicate failure
+  const validateForm = () => {
+    const newErrors = {};
+    if (!firstname.trim()) newErrors.firstname = 'First name is required';
+    if (!lastname.trim()) newErrors.lastname = 'Last name is required';
+    if (!email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = 'Email is invalid';
     }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  // console.log(meetLink)
-
-  const generateRandomCode = (length) => {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      result += characters.charAt(randomIndex);
-    }
-    // console.log(result)
-    return result;
-
-  };
-
-
-  const sendEmail = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const generatedLink = await generateMeetLink(); 
-
-    if (!generatedLink) {
-      alert("Failed to generate Meet link. Please try again.");
+    if (!token) {
+      alert('Please log in with Google to proceed.');
       return;
     }
 
-    const templateParams = {
-      from_name: "Code One LLC",
-      from_email: "codeone@gmail.com",
-      to_name: firstname,
-      to_email: email,
-      selected_date: selectedDate.toDateString(),
-      selected_time: selectedTime,
-      meet_link: generatedLink, // Include the Meet link in the email
-    };
+    if (!validateForm()) {
+      return;
+    }
 
-    emailjs
-      .sendForm(
-        "service_sz9g5lc",
-        "template_gcd5k4v",
-        form.current,
-        "vMGkqDDUbESXXDONr"
-      )
-      .then(
-        (response) => {
-          console.log("Email sent successfully:", response);
-          setFirstname("");
-          setLastname("");
-          setEmail("");
-          setMeetLink("")
-          setBooked(true);
+    try {
+      const eventStart = new Date(selectedDate);
+      const [hours, minutes] = selectedTime.split(':');
+      eventStart.setHours(parseInt(hours), parseInt(minutes));
+
+      const eventEnd = new Date(eventStart);
+      eventEnd.setHours(eventEnd.getHours() + 1);
+
+      const response = await axios.post(
+        'https://www.googleapis.com/calendar/v3/calendars/primary/events',
+        {
+          summary: `Demo with ${firstname} ${lastname}`,
+          start: {
+            dateTime: eventStart.toISOString(),
+            timeZone: 'America/Los_Angeles',
+          },
+          end: {
+            dateTime: eventEnd.toISOString(),
+            timeZone: 'America/Los_Angeles',
+          },
+          attendees: [{ email }],
+          conferenceData: {
+            createRequest: {
+              requestId: `demo-${Date.now()}`,
+              conferenceSolutionKey: { type: 'hangoutsMeet' },
+            },
+          },
         },
-        (error) => {
-          console.error("Failed to send email:", error);
-          alert("Failed to send email. Please check the console for errors.");
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          params: { conferenceDataVersion: 1 },
         }
       );
 
-    e.target.reset();
+      const meetLink = response.data.hangoutLink;
+      console.log(meetLink);
+
+      if (!meetLink) {
+        alert('Failed to generate Meet link. Please try again.');
+        return;
+      }
+
+      const templateParams = {
+        from_name: 'Your Company Name',
+        to_name: `${firstname} ${lastname}`,
+        to_email: email,
+        selected_date: selectedDate.toDateString(),
+        selected_time: selectedTime,
+        meet_link: meetLink,
+      };
+
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID);
+      console.log('✅ Email Sent Successfully');
+      setBooked(true);
+      setFirstname('');
+      setLastname('');
+      setEmail('');
+      setErrors({});
+    } catch (error) {
+      console.error('❌ Error:', error);
+      alert('An error occurred. Please try again.');
+    }
   };
 
-  const isFormValid = firstname.trim() !== "" && lastname.trim() !== "" && email.trim() !== "";
-
   return (
-    <>
-      {/* Intro */}
-      <div className={`mt- md:mb-16 ${!booked ? "hidden" : ""}`}>
-        <h3 className="md:text-3xl text-2xl font-normal text-center mb-4">
-          Book a{" "}
-          <span className="bg-gradient-to-r from-[#C2E485] to-[#D7F825] px-2 py-1 rounded-md">
-            demo
-          </span>{" "}
-          with our Code One LLC <br /> expert
-        </h3>
-        <p className="text-md text-gray-400 text-center">
-          Other questions? <u>Contact sales</u>
-        </p>
+    <div>
+      <div className={`mt-4 ${booked ? 'hidden' : ''}`}>
+        <h3 className="text-2xl font-normal text-center">Book a Demo</h3>
       </div>
 
-      {/* Form Section */}
-      <div
-        className={`mx-auto w-full md:w-[800px] shadow-md p-8 m-20 ${
-          booked ? "hidden" : ""
-        }`}
-      >
-        <div className="flex flex-col">
-          <div className="flex flex-col">
-            <h3 className="text-[#33475B] text-xl mb-2">Your Information</h3>
-            <div className="flex items-start gap-2">
-              <p className="text-md text-[#33475B]">
-                {selectedDate.toDateString()} {selectedTime}{" "}
-              </p>
-              <p
-                className="text-sm text-blue-400 hover:cursor-pointer"
-                onClick={() => setSelectedTime(null)}
-              >
-                Edit
-              </p>
+      <div className={`w-full max-w-lg mx-auto p-8 shadow-md ${booked ? 'hidden' : ''}`}>
+        {!token ? (
+          <button
+            onClick={() => login()}
+            className="bg-blue-500 text-white p-2 w-full hover:bg-blue-600"
+          >
+            Login with Google
+          </button>
+        ) : (
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">First Name</label>
+              <input
+                type="text"
+                name="firstname"
+                placeholder="Enter your first name"
+                value={firstname}
+                onChange={(e) => setFirstname(e.target.value)}
+                className={`border p-2 w-full ${errors.firstname ? 'border-red-500' : 'border-gray-300'}`}
+                required
+              />
+              {errors.firstname && <p className="text-red-500 text-sm">{errors.firstname}</p>}
             </div>
-          </div>
-        </div>
-
-        <form className="flex mt-3 w-full" onSubmit={sendEmail} ref={form}>
-          <div className="flex flex-col w-full gap-4">
-            <div className="flex gap-2 mb-4">
-              <div className="flex flex-col gap-2 md:flex-row w-full">
-                <div className="flex flex-col md:w-1/2 w-full mb-2">
-                  <label
-                    htmlFor="firstname"
-                    className="items-start text-[#33475B] text-xs mb-1"
-                  >
-                    First name *
-                  </label>
-                  <input
-                    type="text"
-                    name="firstname"
-                    value={firstname}
-                    onChange={(e) => setFirstname(e.target.value)}
-                    className="border outline-none border-gray-400 rounded-sm px-2 py-2"
-                  />
-                </div>
-
-                <div className="flex flex-col md:w-1/2 w-full">
-                  <label
-                    htmlFor="lastname"
-                    className="items-start text-[#33475B] text-xs mb-1"
-                  >
-                    Last name *
-                  </label>
-                  <input
-                    type="text"
-                    name="lastname"
-                    value={lastname}
-                    onChange={(e) => setLastname(e.target.value)}
-                    className="border outline-none border-gray-400 rounded-sm px-2 py-2"
-                  />
-                </div>
-              </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Last Name</label>
+              <input
+                type="text"
+                name="lastname"
+                placeholder="Enter your last name"
+                value={lastname}
+                onChange={(e) => setLastname(e.target.value)}
+                className={`border p-2 w-full ${errors.lastname ? 'border-red-500' : 'border-gray-300'}`}
+                required
+              />
+              {errors.lastname && <p className="text-red-500 text-sm">{errors.lastname}</p>}
             </div>
-
-            <div className="flex flex-col w-full">
-              <label
-                htmlFor="email"
-                className="items-start text-[#33475B] text-xs"
-              >
-                Your email address *
-              </label>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Email</label>
               <input
                 type="email"
                 name="email"
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="border outline-none border-gray-400 rounded-sm px-2 py-2"
+                className={`border p-2 w-full ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
+                required
               />
+              {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
             </div>
-
-            {/* Hidden input fields for selectedDate and selectedTime */}
-            <input
-              type="hidden"
-              name="selected_date"
-              value={selectedDate.toDateString()}
-            />
-            <input type="hidden" name="selected_time" value={selectedTime} />
-            <input type="hidden" name="meetLink" value={meetLink} />
-
-
-            <div className="flex justify-between mt-4">
-              <div className="flex items-center justify-center border border-gray-400 px-4 py-2 rounded-sm">
-                <MdKeyboardArrowLeft />
-                <div onClick={() => setSelectedTime(null)} className="text-[#33475B] text-sm px-4 cursor-pointer">Back</div>
-              </div>
-
-              <div className={`flex items-center justify-center border border-gray-400 px-4 py-2 rounded-sm ${!isFormValid ? "bg-gray-400" : "bg-blue-400"}`}>
-                <button
-                  className="text-[#33475B] text-sm"
-                  type="submit"
-                  disabled={!isFormValid} // Disable button if form is invalid
-                >
-                  Confirm
-                </button>
-              </div>
+            <div>
+              <button
+                type="submit"
+                className="bg-blue-500 text-white p-2 w-full hover:bg-blue-600 disabled:bg-gray-400"
+                disabled={!firstname || !lastname || !email}
+              >
+                Confirm
+              </button>
             </div>
-          </div>
-        </form>
+          </form>
+        )}
       </div>
 
-      {/* Success Section */}
-      <div
-        className={`flex border-none shadow-md items-center justify-center md:w-[400px] mx-auto md:mt-10 py-10 ${
-          !booked ? "hidden" : "block"
-        }`}
-      >
-        <div className="flex flex-col items-center justify-center w-full">
+      <div className={`flex flex-col items-center justify-center w-full shadow-sm ${!booked ? 'hidden' : ''}`}>
           <img
             src="//static.hsappstatic.net/ui-images/static-2.731/optimized/success.svg"
             className="w-56 h-40"
@@ -237,9 +209,16 @@ const DemoCart = ({ selectedTime, selectedDate, setSelectedTime }) => {
             </h1>
           </div>
         </div>
-      </div>
-    </>
+
+    </div>
   );
 };
 
-export default DemoCart;
+// Wrap DemoCart in GoogleOAuthProvider outside the component
+const WrappedDemoCart = (props) => (
+  <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+    <DemoCart {...props} />
+  </GoogleOAuthProvider>
+);
+
+export default WrappedDemoCart;
