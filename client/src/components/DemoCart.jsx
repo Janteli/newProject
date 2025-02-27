@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
 import emailjs from '@emailjs/browser';
 import axios from 'axios';
@@ -13,20 +13,27 @@ const DemoCart = ({ selectedTime, selectedDate }) => {
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [booked, setBooked] = useState(false);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(() => localStorage.getItem('google_access_token') || null);
   const [errors, setErrors] = useState({});
 
-  // Use the useGoogleLogin hook with explicit clientId
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem('google_access_token', token);
+    }
+  }, [token]);
+
   const login = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      console.log('Token response:', tokenResponse);
-      setToken(tokenResponse.access_token); // Store the access token
-    },
+    onSuccess: (tokenResponse) => setToken(tokenResponse.access_token),
     onError: (error) => console.log('Login failed:', error),
     scope: 'https://www.googleapis.com/auth/calendar.events',
-    flow: 'implicit', // Use implicit flow for access_token
-    clientId: GOOGLE_CLIENT_ID, // Explicitly pass clientId
+    flow: 'implicit',
+    clientId: GOOGLE_CLIENT_ID,
   });
+
+  const logout = () => {
+    setToken(null);
+    localStorage.removeItem('google_access_token');
+  };
 
   const validateForm = () => {
     const newErrors = {};
@@ -43,21 +50,13 @@ const DemoCart = ({ selectedTime, selectedDate }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!token) {
-      alert('Please log in with Google to proceed.');
-      return;
-    }
-
-    if (!validateForm()) {
-      return;
-    }
+    if (!token) return alert('Please log in with Google to proceed.');
+    if (!validateForm()) return;
 
     try {
       const eventStart = new Date(selectedDate);
       const [hours, minutes] = selectedTime.split(':');
       eventStart.setHours(parseInt(hours), parseInt(minutes));
-
       const eventEnd = new Date(eventStart);
       eventEnd.setHours(eventEnd.getHours() + 1);
 
@@ -65,14 +64,8 @@ const DemoCart = ({ selectedTime, selectedDate }) => {
         'https://www.googleapis.com/calendar/v3/calendars/primary/events',
         {
           summary: `Demo with ${firstname} ${lastname}`,
-          start: {
-            dateTime: eventStart.toISOString(),
-            timeZone: 'America/Los_Angeles',
-          },
-          end: {
-            dateTime: eventEnd.toISOString(),
-            timeZone: 'America/Los_Angeles',
-          },
+          start: { dateTime: eventStart.toISOString(), timeZone: 'America/Los_Angeles' },
+          end: { dateTime: eventEnd.toISOString(), timeZone: 'America/Los_Angeles' },
           attendees: [{ email }],
           conferenceData: {
             createRequest: {
@@ -82,21 +75,13 @@ const DemoCart = ({ selectedTime, selectedDate }) => {
           },
         },
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
+          headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
           params: { conferenceDataVersion: 1 },
         }
       );
 
       const meetLink = response.data.hangoutLink;
-      console.log(meetLink);
-
-      if (!meetLink) {
-        alert('Failed to generate Meet link. Please try again.');
-        return;
-      }
+      if (!meetLink) throw new Error('Failed to generate Meet link');
 
       const templateParams = {
         from_name: 'Your Company Name',
@@ -108,113 +93,63 @@ const DemoCart = ({ selectedTime, selectedDate }) => {
       };
 
       await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, USER_ID);
-      console.log('✅ Email Sent Successfully');
       setBooked(true);
       setFirstname('');
       setLastname('');
       setEmail('');
       setErrors({});
     } catch (error) {
-      console.error('❌ Error:', error);
-      alert('An error occurred. Please try again.');
+      console.error('Error:', error);
+      if (error.response?.status === 401) {
+        alert('Your session has expired. Please log in again.');
+        logout();
+      } else {
+        alert('An error occurred. Please try again.');
+      }
     }
   };
 
   return (
-    <div>
-      <div className={`mt-4 ${booked ? 'hidden' : ''}`}>
-        <h3 className="text-2xl font-normal text-center">Book a Demo</h3>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-4 sm:px-6 lg:px-8">
+      <div className={`mt-4 sm:mt-6 ${booked ? 'hidden' : ''}`}>
+        <h3 className="text-xl sm:text-2xl font-normal text-center text-gray-800">Book a Demo</h3>
       </div>
 
-      <div className={`w-full max-w-lg mx-auto p-8 shadow-md ${booked ? 'hidden' : ''}`}>
+      <div className={`w-full max-w-full sm:max-w-full p-6 shadow-md bg-white rounded-lg ${booked ? 'hidden' : ''}`}>
         {!token ? (
-          <button
-            onClick={() => login()}
-            className="bg-blue-500 text-white p-2 w-full hover:bg-blue-600"
-          >
+          <button onClick={() => login()} className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
             Login with Google
           </button>
         ) : (
-          <form className="space-y-4" onSubmit={handleSubmit}>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">First Name</label>
-              <input
-                type="text"
-                name="firstname"
-                placeholder="Enter your first name"
-                value={firstname}
-                onChange={(e) => setFirstname(e.target.value)}
-                className={`border p-2 w-full ${errors.firstname ? 'border-red-500' : 'border-gray-300'}`}
-                required
-              />
-              {errors.firstname && <p className="text-red-500 text-sm">{errors.firstname}</p>}
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Last Name</label>
-              <input
-                type="text"
-                name="lastname"
-                placeholder="Enter your last name"
-                value={lastname}
-                onChange={(e) => setLastname(e.target.value)}
-                className={`border p-2 w-full ${errors.lastname ? 'border-red-500' : 'border-gray-300'}`}
-                required
-              />
-              {errors.lastname && <p className="text-red-500 text-sm">{errors.lastname}</p>}
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Email</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className={`border p-2 w-full ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
-                required
-              />
-              {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
-            </div>
-            <div>
-              <button
-                type="submit"
-                className="bg-blue-500 text-white p-2 w-full hover:bg-blue-600 disabled:bg-gray-400"
-                disabled={!firstname || !lastname || !email}
-              >
+          <>
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              <input type="text" placeholder="First Name" value={firstname} onChange={(e) => setFirstname(e.target.value)}
+                className="border p-2 w-full rounded-md focus:ring-blue-500" />
+              <input type="text" placeholder="Last Name" value={lastname} onChange={(e) => setLastname(e.target.value)}
+                className="border p-2 w-full rounded-md focus:ring-blue-500" />
+              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}
+                className="border p-2 w-full rounded-md focus:ring-blue-500" />
+              <button type="submit" className="w-full py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600 transition">
                 Confirm
               </button>
-            </div>
-          </form>
+            </form>
+            <button onClick={logout} className="mt-4 w-full py-2 px-4 bg-red-500 text-white rounded-md hover:bg-red-600 transition">
+              Logout
+            </button>
+          </>
         )}
       </div>
 
-      <div className={`flex flex-col items-center justify-center w-full shadow-sm ${!booked ? 'hidden' : ''}`}>
-          <img
-            src="//static.hsappstatic.net/ui-images/static-2.731/optimized/success.svg"
-            className="w-56 h-40"
-          />
-          <div className="flex flex-col items-center justify-center px-8 mt-4">
-            <h1 className="text-center text-2xl font-light text-gray-600">
-              Booking confirmed
-            </h1>
-            <p className="text-center text-sm text-gray-600 font-light">
-              You're booked with CODE ONE LLC. An invitation has been
-              emailed to you.
-            </p>
-            <h1 className="text-xl font-normal text-slate-600 mt-6">
-              {selectedDate.toDateString()}
-            </h1>
-            <h1 className="text-xl font-normal text-slate-600 ">
-              {selectedTime}
-            </h1>
-          </div>
+      {booked && (
+        <div className="w-full max-w-full sm:max-w-full p-6 bg-white rounded-lg shadow-sm text-center">
+          <h1 className="text-xl font-semibold text-gray-700">Booking Confirmed</h1>
+          <p className="text-gray-600 mt-2">You're booked with CODE ONE LLC. An invitation has been emailed.</p>
         </div>
-
+      )}
     </div>
   );
 };
 
-// Wrap DemoCart in GoogleOAuthProvider outside the component
 const WrappedDemoCart = (props) => (
   <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
     <DemoCart {...props} />

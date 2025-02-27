@@ -46,13 +46,13 @@ const NavBar = () => {
   };
   return (
     <nav
-      className={`fixed   top-0 left-0 w-full flex h-20 md:h-[80px] justify-between md:px-2  md:py-6  px-2 py-4 z-50 ${
+      className={`fixed top-0 left-0 w-full flex h-20 md:h-[80px] justify-between items-center md:px-2  md:py-6  px-2 py-4 z-50 ${
         isScrolled === true ? "bg-white" : "bg-[#282828]"
       }`}
     >
-      <div className="w-1/3 h-7 md:h-10 flex justify-start items-center md:pl-12 pt-6 md:pt-0 ">
+      <div className="w-1/3 h-7  flex justify-start items-center md:pl-12 pt-6 md:pt-0 ">
         <Link to="/">
-          <div className="h-16 -mt-2">
+          <div className="md:h-20 h-16 md:-mt-2 -mt-6">
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               width="100%"
@@ -69,7 +69,7 @@ const NavBar = () => {
             <img
               src="../logo.png"
               alt="logo"
-              className="h-full w-full inset-0 object-contain"
+              className=" h-full w-full inset-0 md:pt-4 object-contain"
             />
           </div>
         </Link>
