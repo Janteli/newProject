@@ -29,7 +29,7 @@ const About = () => {
               className="mb-3 bg-yellow-400"
             />
 
-            <p className="text-xs text-slate-400 pr-8">
+            <p className="text-sm text-slate-700 pr-8">
               At Code One LLC, we specialize in guiding businesses through the
               intricate regulatory landscape of Money Transmitter Licensing
               (MTL) and the rapidly evolving compliance requirements for
@@ -68,7 +68,7 @@ const About = () => {
               className="mb-3 bg-yellow-400"
             />
 
-            <p className="text-xs text-slate-700">
+            <p className="text-sm text-slate-700">
               • Expertise Across All States We understand the nuances of
               licensing requirements across every U.S. jurisdiction, ensuring
               your applications are complete and compliant. • Specialized
