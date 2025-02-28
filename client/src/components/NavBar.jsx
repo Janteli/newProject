@@ -76,7 +76,7 @@ const NavBar = () => {
       </div>
       {/* TABS */}
       <div
-        className={`hidden sm:hidden md:flex  items-center justify-center px-2 py-3 z-10 ${
+        className={`hidden sm:hidden md:flex h-20  items-center justify-center px-2 py-3 z-10 ${
           isScrolled ? "bg-white text-[#282828]" : "bg-[#282828] text-white"
         }`}
       >
