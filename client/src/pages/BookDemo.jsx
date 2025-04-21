@@ -280,6 +280,25 @@ const BookDemo = () => {
     return false;
   };
 
+  // timezone newyork
+  const nyDateString = selectedDate.toLocaleDateString("en-US", {
+    timeZone: "America/New_York",
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  const nyDateTimeString = new Date(`${selectedDate.toDateString()} ${selectedTime}`).toLocaleString("en-US", {
+    timeZone: "America/New_York",
+    hour: "2-digit",
+    minute: "2-digit",
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  
   return (
     <>
       {/* Main booking section */}
@@ -304,7 +323,7 @@ const BookDemo = () => {
             </div>
             <div className="max-w-md mx-auto shadow-lg rounded-md mt-10">
               <h3 className="text-2xl font-sans mb-4 text-center text-white">
-                Meet with CODE ONE LLC
+                Consult with Code One Team
               </h3>
               <StyledCalendar
                 onChange={setSelectedDate}
@@ -360,8 +379,9 @@ const BookDemo = () => {
               </span>
             </p>
             <p className="text-sm mb-4 text-blue-400">
-              UTC +05:45 Kathmandu, Nepal
-            </p>
+  EST/New York Timezone (UTC {Intl.DateTimeFormat('en-US', { timeZoneName: 'short', timeZone: 'America/New_York' }).formatToParts().find(part => part.type === 'timeZoneName')?.value})
+</p>
+
             <div className="flex flex-col gap-2 max-h-96 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
               {duration === 15 &&
                 timeSlots.map((time, index) => (
@@ -384,7 +404,13 @@ const BookDemo = () => {
 
       {/* Display DemoCart */}
       <div className={`mt-44 ${selectedTime === null ? "hidden" : ""}`}>
-        <DemoCart selectedDate={selectedDate} selectedTime={selectedTime} setSelectedTime={setSelectedTime}/>
+      <DemoCart
+  selectedDate={selectedDate}
+  selectedTime={selectedTime}
+  nyDateTimeString={nyDateTimeString}
+  setSelectedTime={setSelectedTime}
+/>
+
       </div>
     </>
   );
