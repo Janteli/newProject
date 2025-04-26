@@ -7,6 +7,8 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import AccountPage from "./pages/AccountPage";
+import PrivacyPolicy from "./pages/Privacy";
+import TermsOfService from "./pages/Terms";
 
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
           <Route path="/service" element={<Services/>}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/codeone-account" element={<AccountPage/>}/>
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
       </Routes>
