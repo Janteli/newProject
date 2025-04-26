@@ -112,17 +112,11 @@ const StyledCalendar = styled(Calendar)`
   }
 
   .react-calendar__tile {
-    max-width: 4em;
-    padding: 0;
-    background: #425b76;
-    text-align: center;
-    font: inherit;
-    font-size: 0.833em;
-    height: 4em;
-    width: 4em;
-    // border: 1px solid none;
-    border-radius: 50%;
-  }
+  border-radius: 50%; /* or smaller radius like 10% */
+  height: auto;
+  width: auto;
+  aspect-ratio: 1 / 1; /* keeps them square */
+}
 
   .react-calendar__tile:disabled {
     background-color: #425b76;
@@ -258,20 +252,22 @@ const BookDemo = () => {
     const month = date.getMonth();
     const dateNumber = date.getDate();
     const currentMonth = new Date().getMonth();
-    // Disable weekends (Sundays and Saturdays)
-    if (day === 0 || day === 6) {
+    
+   if (view === "month") {
+      return day === 0 || day === 6;} // Disable Sundays (0) and Saturdays (6)
+    if (day === 0 && day === 6) {
       return true;
     }
 
     // Disable January 6th
-    if (month === 0 && dateNumber <= 6) {
-      return true;
-    }
+    // if (month === 0 && dateNumber <= 6) {
+    //   return true;
+    // }
 
     // Disable all dates after February 14th
-    if (month === 1 && dateNumber > 14) {
-      return true;
-    }
+    // if (month === 1 && dateNumber > 14) {
+    //   return true;
+    // }
     if (month !== currentMonth) {
       return true;
     }
@@ -334,9 +330,11 @@ const BookDemo = () => {
                 calendarType="gregory"
                 prev2Label={null}
                 next2Label={null}
+                
               />
             </div>
           </div>
+        
 
           {/* Right: Time Slots */}
           <div className="w-full md:w-1/2 bg-white pl-4 rounded-md pr-8 shadow-lg max-w-sm py-10">

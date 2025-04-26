@@ -5,10 +5,10 @@ import axios from "axios";
 
 const GOOGLE_CLIENT_ID =
   import.meta.env.VITE_GOOGLE_CLIENT_ID ||
-  "671715197242-b57naf9f38l1khu143ch6rn50fpv66t8.apps.googleusercontent.com";
-const SERVICE_ID = "service_8ywcv5c";
-const TEMPLATE_ID = "template_nnda24t";
-const USER_ID = "qmfXAYWGqQ-CsVNab";
+  "29963929626-ar562gl4gpki5a68sot21l891n0vra6o.apps.googleusercontent.com";
+const SERVICE_ID = "service_4iql33e";
+const TEMPLATE_ID = "template_0xkntwb";
+const USER_ID = "nz3_r0J3z2XMtXvQV";
 
 const DemoCart = ({ selectedTime, selectedDate, nyDateTimeString }) => {
   const [firstname, setFirstname] = useState("");
