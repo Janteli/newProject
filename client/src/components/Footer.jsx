@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -38,8 +39,8 @@ const Footer = () => {
           <div className="col-span-6">
             <p>©2025 CodeOne LLC All rights reserved</p>
           </div>
-          <div className="col-span-2"></div>
-          <div className="col-span-2"></div>
+          <div className="col-span-2"><Link to="/privacy">Privacy & Policy</Link></div>
+          <div className="col-span-2"><Link to="/terms">Terms</Link></div>
           <div className="col-span-2"></div>
         </div>
       </div>
