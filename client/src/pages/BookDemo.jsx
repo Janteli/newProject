@@ -112,11 +112,11 @@ const StyledCalendar = styled(Calendar)`
   }
 
   .react-calendar__tile {
-  border-radius: 50%; /* or smaller radius like 10% */
-  height: auto;
-  width: auto;
-  aspect-ratio: 1 / 1; /* keeps them square */
-}
+    border-radius: 50%; /* or smaller radius like 10% */
+    height: auto;
+    width: auto;
+    aspect-ratio: 1 / 1; /* keeps them square */
+  }
 
   .react-calendar__tile:disabled {
     background-color: #425b76;
@@ -221,7 +221,7 @@ const BookDemo = () => {
     }
   };
 
-  const timeSlots = [
+  const timeSlots15 = [
     "2:15 pm",
     "2:30 pm",
     "2:45 pm",
@@ -241,6 +241,19 @@ const BookDemo = () => {
     "6:15 pm",
   ];
 
+  const timeSlots30 = [
+    "2:30 pm",
+    "3:00 pm",
+    "3:30 pm",
+    "4:00 pm",
+    "4:30 pm",
+    "5:00 pm",
+    "5:30 pm",
+    "6:00 pm",
+  ];
+
+  const timeSlots60 = ["3:00 pm", "4:00 pm", "5:00 pm"];
+
   const handleTimeSlotClick = (time) => {
     setSelectedTime(time);
   };
@@ -248,31 +261,20 @@ const BookDemo = () => {
   // console.log(selectedTime);
 
   const tileDisabled = ({ date, view }) => {
+    if (view !== "month") return false;
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
     const day = date.getDay();
     const month = date.getMonth();
     const dateNumber = date.getDate();
-    const currentMonth = new Date().getMonth();
-    
-   if (view === "month") {
-      return day === 0 || day === 6;} // Disable Sundays (0) and Saturdays (6)
-    if (day === 0 && day === 6) {
-      return true;
-    }
+    const currentMonth = today.getMonth();
 
-    // Disable January 6th
-    // if (month === 0 && dateNumber <= 6) {
-    //   return true;
-    // }
+    if (date < today) return true;
+    if (day === 0 || day === 6) return true;
+    if (month === 0 && dateNumber <= 6) return true;
+    if (month !== currentMonth) return true;
 
-    // Disable all dates after February 14th
-    // if (month === 1 && dateNumber > 14) {
-    //   return true;
-    // }
-    if (month !== currentMonth) {
-      return true;
-    }
-
-    // Default: Allow other dates
     return false;
   };
 
@@ -285,7 +287,9 @@ const BookDemo = () => {
     day: "numeric",
   });
 
-  const nyDateTimeString = new Date(`${selectedDate.toDateString()} ${selectedTime}`).toLocaleString("en-US", {
+  const nyDateTimeString = new Date(
+    `${selectedDate.toDateString()} ${selectedTime}`
+  ).toLocaleString("en-US", {
     timeZone: "America/New_York",
     hour: "2-digit",
     minute: "2-digit",
@@ -294,7 +298,7 @@ const BookDemo = () => {
     month: "long",
     day: "numeric",
   });
-  
+
   return (
     <>
       {/* Main booking section */}
@@ -330,11 +334,9 @@ const BookDemo = () => {
                 calendarType="gregory"
                 prev2Label={null}
                 next2Label={null}
-                
               />
             </div>
           </div>
-        
 
           {/* Right: Time Slots */}
           <div className="w-full md:w-1/2 bg-white pl-4 rounded-md pr-8 shadow-lg max-w-sm py-10">
@@ -377,12 +379,53 @@ const BookDemo = () => {
               </span>
             </p>
             <p className="text-sm mb-4 text-blue-400">
-  EST/New York Timezone (UTC {Intl.DateTimeFormat('en-US', { timeZoneName: 'short', timeZone: 'America/New_York' }).formatToParts().find(part => part.type === 'timeZoneName')?.value})
-</p>
+              EST/New York Timezone (UTC{" "}
+              {
+                Intl.DateTimeFormat("en-US", {
+                  timeZoneName: "short",
+                  timeZone: "America/New_York",
+                })
+                  .formatToParts()
+                  .find((part) => part.type === "timeZoneName")?.value
+              }
+              )
+            </p>
 
             <div className="flex flex-col gap-2 max-h-96 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
               {duration === 15 &&
-                timeSlots.map((time, index) => (
+                timeSlots15.map((time, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleTimeSlotClick(time)}
+                    className={`px-2 py-4 text-gray-600 border rounded-sm text-center cursor-pointer ${
+                      selectedTime === time
+                        ? "bg-transparent text-blue-400"
+                        : "bg-gray-100 hover:bg-gray-200"
+                    }`}
+                  >
+                    {time}
+                  </button>
+                ))}
+            </div>
+            <div className="flex flex-col gap-2 max-h-96 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+              {duration === 30 &&
+                timeSlots30.map((time, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleTimeSlotClick(time)}
+                    className={`px-2 py-4 text-gray-600 border rounded-sm text-center cursor-pointer ${
+                      selectedTime === time
+                        ? "bg-transparent text-blue-400"
+                        : "bg-gray-100 hover:bg-gray-200"
+                    }`}
+                  >
+                    {time}
+                  </button>
+                ))}
+            </div>
+            <div className="flex flex-col gap-2 max-h-96 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+              {duration === 60 &&
+                timeSlots60.map((time, index) => (
                   <button
                     key={index}
                     onClick={() => handleTimeSlotClick(time)}
@@ -402,13 +445,12 @@ const BookDemo = () => {
 
       {/* Display DemoCart */}
       <div className={`mt-44 ${selectedTime === null ? "hidden" : ""}`}>
-      <DemoCart
-  selectedDate={selectedDate}
-  selectedTime={selectedTime}
-  nyDateTimeString={nyDateTimeString}
-  setSelectedTime={setSelectedTime}
-/>
-
+        <DemoCart
+          selectedDate={selectedDate}
+          selectedTime={selectedTime}
+          nyDateTimeString={nyDateTimeString}
+          setSelectedTime={setSelectedTime}
+        />
       </div>
     </>
   );
